@@ -1,54 +1,63 @@
-import "@/styles/globals.css"
-import { Metadata } from "next"
+import '@/styles/globals.css'
+import { ThemeProvider } from '@/components/theme-provider'
+import Script from 'next/script'
+import GATracker from '@/components/GATracker'
+import {SiteHeader} from "@/components/site-header";
+import {ReduxProviderWrapper} from "@/components/ReduxProviderWrapper";
 
-import { siteConfig } from "@/config/site"
-import { fontSans } from "@/lib/fonts"
-import { cn } from "@/lib/utils"
-import { SiteHeader } from "@/components/site-header"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
-import { ThemeProvider } from "@/components/theme-provider"
-
-export const metadata: Metadata = {
-  title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
+export const metadata = {
+  title: '(: PickMyLunch :)',
+  description: '(: recommend lunch menu for you :)',
 }
 
-interface RootLayoutProps {
-  children: React.ReactNode
-}
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <html lang="en" suppressHydrationWarning>
-        <head />
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
-          )}
-        >
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="relative flex min-h-screen flex-col">
-              <SiteHeader />
-              <div className="flex-1">{children}</div>
-            </div>
-            <TailwindIndicator />
-          </ThemeProvider>
-        </body>
-      </html>
-    </>
+    <html lang="en" suppressHydrationWarning>
+    <head>
+      {/* Favicon and Meta Tags */}
+      <link rel="apple-touch-icon" sizes="57x57" href="/public/apple-icon-57x57.png" />
+      <link rel="apple-touch-icon" sizes="60x60" href="/public/apple-icon-60x60.png" />
+      <link rel="apple-touch-icon" sizes="72x72" href="/public/apple-icon-72x72.png" />
+      <link rel="apple-touch-icon" sizes="76x76" href="/public/apple-icon-76x76.png" />
+      <link rel="apple-touch-icon" sizes="114x114" href="/public/apple-icon-114x114.png" />
+      <link rel="apple-touch-icon" sizes="120x120" href="/public/apple-icon-120x120.png" />
+      <link rel="apple-touch-icon" sizes="144x144" href="/public/apple-icon-144x144.png" />
+      <link rel="apple-touch-icon" sizes="152x152" href="/public/apple-icon-152x152.png" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-icon-180x180.png" />
+      <link rel="icon" type="image/png" sizes="192x192" href="/public/android-icon-192x192.png" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png" />
+      <link rel="icon" type="image/png" sizes="96x96" href="/public/favicon-96x96.png" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/public/favicon-16x16.png" />
+      <link rel="manifest" href="/public/manifest.json" />
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+      <meta name="theme-color" content="#ffffff" />
+
+      {/* Google Analytics 4 */}
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA4_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="ga-init" strategy="afterInteractive">
+        {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GA4_ID}', {
+                page_path: window.location.pathname,
+              });
+          `}
+      </Script>
+    </head>
+    <body>
+      <ReduxProviderWrapper>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <GATracker />
+          <SiteHeader />
+          {children}
+        </ThemeProvider>
+      </ReduxProviderWrapper>
+    </body>
+    </html>
   )
 }
