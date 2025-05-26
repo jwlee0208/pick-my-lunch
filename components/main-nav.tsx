@@ -5,6 +5,7 @@ import { NavItem } from "@/types/nav"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { Icons } from "@/components/icons"
+import {LogoIcon} from "@/components/LogoIcon";
 
 interface MainNavProps {
   items?: NavItem[]

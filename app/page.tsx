@@ -5,9 +5,10 @@ import { Utensils, RefreshCcw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import FilterSection from '@/components/FilterSection'
 import FoodMap from '@/components/FoodMap'
+import FoodTagList from "@/components/FoodTagList";
 
 const types = ['선택해주세요', '한식', '일식', '중식', '양식']
-const peoples = ['선택해주세요', '혼자', '친구', '직장동료']
+const peoples = ['선택해주세요', '혼자', '친구', '직장동료','연인']
 const bases = ['선택해주세요', '면', '밥']
 const styles = ['선택해주세요', '간단히', '제대로']
 
@@ -837,13 +838,6 @@ export default function Home() {
     }
   }, [])
 
-/*
-  useEffect(() => {
-    // TODO: 여기에 음식 필터링 로직 적용 (예시: 서버 요청 또는 local filtering)
-    setFilteredFoods(['김밥', '비빔밥', '김치찌개'])
-  }, [selectedType, selectedPeople, selectedBase, selectedStyle, focusedFood])
-*/
-
   const resetFilters = () => {
     setSelectedType(types[0])
     setSelectedPeople(peoples[0])
@@ -851,7 +845,6 @@ export default function Home() {
     setSelectedStyle(styles[0])
     setFocusedFood(null)
   }
-
 
   type Food = {
     name: string
@@ -884,14 +877,6 @@ export default function Home() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
-{/*
-      <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <h2 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
-          <Utensils size={28} className="text-indigo-600" /> 오늘 점심 추천
-        </h2>
-      </header>
-*/}
-
       <FilterSection
         selectedType={selectedType}
         setSelectedType={setSelectedType}
@@ -909,18 +894,11 @@ export default function Home() {
 
       {filteredFoods.length > 0 && (
         <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {filteredFoods.map((food) => (
-            <span
-              key={food}
-              onClick={() => setFocusedFood(food)}
-              className={`cursor-pointer transition hover:shadow-lg rounded-xl p-6 text-center text-lg font-medium border ${
-                focusedFood === food ? 'bg-indigo-600 text-white' : 'bg-muted'
-              }`}
-            >
-              {food}
-            </span>
-          ))}
-
+          <FoodTagList
+            filteredFoods={filteredFoods}
+            focusedFood={focusedFood}
+            setFocusedFood={setFocusedFood}
+          />
           <Button variant="outline" onClick={resetFilters} className="gap-2">
             <RefreshCcw size={16} /> 초기화
           </Button>

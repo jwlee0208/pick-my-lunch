@@ -37,7 +37,12 @@ const PlaceList = ({ places, userLocation }: Props) => {
     return { ...place, distance }
   })
 
-  const sortedPlaces = placesWithDistance.sort((a, b) => {
+  // 🔥 여기서 폐업 장소 제거
+  const filteredPlaces = placesWithDistance.filter(
+    (place) => place.business_status != 'CLOSED_PERMANENTLY' && place.business_status != 'CLOSED_TEMPORARILY'
+)
+
+  const sortedPlaces = filteredPlaces.sort((a, b) => {
     if (sortKey === 'rating') return (b.rating ?? 0) - (a.rating ?? 0)
     if (sortKey === 'distance') {
       if (a.distance == null) return 1

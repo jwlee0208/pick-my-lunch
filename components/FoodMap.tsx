@@ -1,8 +1,12 @@
 'use client'
 
 import React, { useEffect, useRef, useState, useMemo } from 'react'
-import PlaceList from './PlaceList'
+import {Dialog, DialogContent, DialogTitle} from '@/components/ui/dialog'
+import { Button } from '@/components/ui/button'
+import { Dice6 } from 'lucide-react'
+
 import RandomFoodBox from './RandomFoodBox'
+import PlaceList from './PlaceList'
 
 type Props = {
   foodNames: string[]
@@ -16,12 +20,15 @@ const FoodMap = ({ foodNames, userLocation }: Props) => {
   const isMapInitialized = useRef(false)
   const [places, setPlaces] = useState<any[]>([])
   const [randomFood, setRandomFood] = useState<string | null>(null)
+  const [showRandomFoodModal, setShowRandomFoodModal] = useState<boolean>(true)
+  const [hasUserInteracted, setHasUserInteracted] = useState(false)
   const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY
 
   const selectedFoods = useMemo(() => {
     return randomFood ? [randomFood] : foodNames
   }, [randomFood, foodNames])
 
+  // Google Maps API 로딩
   useEffect(() => {
     if (!userLocation) return
 
@@ -52,14 +59,8 @@ const FoodMap = ({ foodNames, userLocation }: Props) => {
     })
 
     isMapInitialized.current = true
-    if (selectedFoods?.length > 0) searchMultipleFoods()
+    if (selectedFoods.length > 0) searchMultipleFoods()
   }
-
-  useEffect(() => {
-    if (googleMap.current && selectedFoods && userLocation) {
-      searchMultipleFoods()
-    }
-  }, [selectedFoods, userLocation])
 
   const searchMultipleFoods = () => {
     if (!googleMap.current || !window.google.maps.places) return
@@ -79,26 +80,23 @@ const FoodMap = ({ foodNames, userLocation }: Props) => {
         service.textSearch(request, (results, status) => {
           if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
             results.forEach((place) => {
-              if (!allResults.has(place.place_id)) {
-                if (place.geometry?.location) {
-                  allResults.set(place.place_id, place)
+              if (!allResults.has(place.place_id) && place.geometry?.location) {
+                allResults.set(place.place_id, place)
 
-                  const marker = new window.google.maps.Marker({
-                    map: googleMap.current,
-                    position: place.geometry.location,
-                    title: place.name,
-                  })
+                const marker = new window.google.maps.Marker({
+                  map: googleMap.current,
+                  position: place.geometry.location,
+                  title: place.name,
+                })
 
-                  marker.addListener('click', () => {
-                    // 안전하게 place.geometry?.location 체크 후 사용
-                    if (place.geometry?.location) {
-                      googleMap.current.setCenter(place.geometry.location)
-                      googleMap.current.setZoom(16)
-                    }
-                  })
+                marker.addListener('click', () => {
+                  if (place.geometry?.location) {
+                    googleMap.current.setCenter(place.geometry.location)
+                    googleMap.current.setZoom(16)
+                  }
+                })
 
-                  markersRef.current.push(marker)
-                }
+                markersRef.current.push(marker)
               }
             })
           }
@@ -118,6 +116,12 @@ const FoodMap = ({ foodNames, userLocation }: Props) => {
   }
 
   useEffect(() => {
+    if (googleMap.current && selectedFoods && userLocation) {
+      searchMultipleFoods()
+    }
+  }, [selectedFoods, userLocation])
+
+  useEffect(() => {
     if (foodNames?.length > 0) {
       const random = foodNames[Math.floor(Math.random() * foodNames.length)]
       setRandomFood(random)
@@ -125,6 +129,8 @@ const FoodMap = ({ foodNames, userLocation }: Props) => {
   }, [foodNames])
 
   const handleAcceptRandomFood = () => {
+    setHasUserInteracted(true)
+    setShowRandomFoodModal(false)
     searchMultipleFoods()
   }
 
@@ -136,22 +142,59 @@ const FoodMap = ({ foodNames, userLocation }: Props) => {
 
   const handleDismissRandomFood = () => {
     setRandomFood(null)
+    setHasUserInteracted(true)
+    setShowRandomFoodModal(false)
     searchMultipleFoods()
+  }
+
+  const handleShowRecommendation = () => {
+    setPlaces([])
+    clearMarkers()
+    if (foodNames.length > 0) {
+      const random = foodNames[Math.floor(Math.random() * foodNames.length)]
+      setRandomFood(random)
+    }
+    setShowRandomFoodModal(true)
+    setHasUserInteracted(false)
   }
 
   return (
     <div className="w-full space-y-4">
-      <RandomFoodBox
-        foodNames={foodNames}
-        randomFood={randomFood}
-        onAccept={handleAcceptRandomFood}
-        onRePick={handleRePick}
-        onDismiss={handleDismissRandomFood}
-      />
+      {/* 추천 음식 보기 버튼 */}
+      <div className="flex justify-end">
+        <Button
+          variant="outline"
+          onClick={handleShowRecommendation}
+          className="bg-red-100 hover:bg-red-200 text-red-700 flex items-center gap-2 text-sm"
+        >
+          <Dice6 className="h-4 w-4" />
+          추천 음식 보기
+        </Button>
+      </div>
 
+      {/* 지도 */}
       <div ref={mapRef} className="w-full h-[400px] rounded-md border shadow-sm" />
 
+      {/* 음식점 리스트 */}
       {places.length > 0 && <PlaceList places={places} userLocation={userLocation} />}
+
+      {/* 추천 음식 모달 */}
+      {showRandomFoodModal && (
+        <Dialog open onOpenChange={(open) => setShowRandomFoodModal(open)}>
+          <DialogContent className="rounded-lg bg-white dark:bg-gray-900 p-6 shadow-xl w-full max-w-md mx-auto">
+            <div>
+              <DialogTitle className="mb-2">오늘의 추천 메뉴</DialogTitle>
+              <RandomFoodBox
+                foodNames={foodNames}
+                randomFood={randomFood}
+                onAccept={handleAcceptRandomFood}
+                onRePick={handleRePick}
+                onDismiss={handleDismissRandomFood}
+              />
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
     </div>
   )
 }
