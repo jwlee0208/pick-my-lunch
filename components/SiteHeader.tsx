@@ -3,7 +3,6 @@
 import { siteConfig } from "@/config/site"
 import { MainNav } from "@/components/main-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
-import {GoogleTranslate} from "@/components/GoogleTranslate";
 
 export function SiteHeader() {
   return (
@@ -13,7 +12,6 @@ export function SiteHeader() {
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-1">
             <ThemeToggle />
-            {/*<GoogleTranslate />*/}
           </nav>
         </div>
       </div>
