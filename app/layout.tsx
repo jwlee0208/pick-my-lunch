@@ -2,7 +2,7 @@ import '@/styles/globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import Script from 'next/script'
 import GATracker from '@/components/GATracker'
-import {SiteHeader} from "@/components/site-header";
+import {SiteHeader} from "@/components/SiteHeader";
 import {ReduxProviderWrapper} from "@/components/ReduxProviderWrapper";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

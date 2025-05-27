@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef, useState, useMemo } from 'react'
+import React, { useEffect, useRef, useState, useMemo, useCallback } from 'react'
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Dice6 } from 'lucide-react'
@@ -16,13 +16,15 @@ type Props = {
 
 const FoodMap = ({ foodNames, userLocation }: Props) => {
   const mapRef = useRef<HTMLDivElement | null>(null)
-  const googleMap = useRef<any>(null)
-  const markersRef = useRef<any[]>([])
+  const googleMap = useRef<google.maps.Map | null>(null)
+  const markersRef = useRef<google.maps.Marker[]>([])
   const isMapInitialized = useRef(false)
-  const [places, setPlaces] = useState<any[]>([])
+
+  const [places, setPlaces] = useState<google.maps.places.PlaceResult[]>([])
   const [randomFood, setRandomFood] = useState<string | null>(null)
   const [showRandomFoodModal, setShowRandomFoodModal] = useState<boolean>(true)
   const [hasUserInteracted, setHasUserInteracted] = useState(false)
+
   const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY
 
   const selectedFoods = useMemo(() => {
@@ -30,25 +32,38 @@ const FoodMap = ({ foodNames, userLocation }: Props) => {
   }, [randomFood, foodNames])
 
   useEffect(() => {
-    if (!userLocation) return
+    if (!userLocation || !GOOGLE_API_KEY) {
+      console.error("Missing user location or Google API key")
+      return
+    }
 
     const existingScript = document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]')
 
     const initialize = () => {
-      if (window.google?.maps?.places) initMap()
+      if (window.google?.maps?.places) {
+        initMap()
+      }
     }
 
     if (existingScript) {
-      existingScript.addEventListener('load', initialize)
+      if (existingScript.getAttribute('data-loaded')) {
+        initialize()
+      } else {
+        existingScript.addEventListener('load', () => {
+          existingScript.setAttribute('data-loaded', 'true')
+          initialize()
+        })
+      }
     } else {
       const script = document.createElement('script')
       script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&libraries=places`
       script.async = true
       script.defer = true
+      script.setAttribute('data-loaded', 'true')
       script.onload = initialize
       document.head.appendChild(script)
     }
-  }, [userLocation])
+  }, [userLocation, GOOGLE_API_KEY])
 
   const initMap = () => {
     if (!mapRef.current || !userLocation || isMapInitialized.current) return
@@ -59,67 +74,75 @@ const FoodMap = ({ foodNames, userLocation }: Props) => {
     })
 
     isMapInitialized.current = true
-    if (selectedFoods.length > 0) searchMultipleFoods()
+    if (selectedFoods.length > 0) {
+      searchMultipleFoods()
+    }
   }
 
-  const searchMultipleFoods = () => {
+  const clearMarkers = () => {
+    markersRef.current.forEach(marker => marker.setMap(null))
+    markersRef.current = []
+  }
+
+  const searchMultipleFoods = useCallback(() => {
     if (!googleMap.current || !window.google.maps.places) return
 
     clearMarkers()
     const service = new window.google.maps.places.PlacesService(googleMap.current)
-    const allResults = new Map()
+    const allResults = new Map<string, google.maps.places.PlaceResult>()
 
     const fetchPromises = selectedFoods.map((food) =>
       new Promise<void>((resolve) => {
-        const request = {
+        const request: google.maps.places.TextSearchRequest = {
           location: userLocation,
           radius: 1500,
           query: food,
         }
 
-        service.textSearch(request, (results, status) => {
-          if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
-            results.forEach((place) => {
-              if (!allResults.has(place.place_id) && place.geometry?.location) {
-                allResults.set(place.place_id, place)
+        service.textSearch(
+          request,
+          (
+            results: google.maps.places.PlaceResult[] | null,
+            status: google.maps.places.PlacesServiceStatus
+          ) => {
+            if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
+              results.forEach((place) => {
+                let isActivate = place.business_status != 'CLOSED_PERMANENTLY' && place.business_status != 'CLOSED_TEMPORARILY';
+                if (!allResults.has(place.place_id!) && place.geometry?.location && isActivate) {
+                  allResults.set(place.place_id!, place)
 
-                const marker = new window.google.maps.Marker({
-                  map: googleMap.current,
-                  position: place.geometry.location,
-                  title: place.name,
-                })
+                  const marker = new window.google.maps.Marker({
+                    map: googleMap.current!,
+                    position: place.geometry.location,
+                    title: place.name,
+                  })
 
-                marker.addListener('click', () => {
-                  if (place.geometry?.location) {
-                    googleMap.current.setCenter(place.geometry.location)
-                    googleMap.current.setZoom(16)
-                  }
-                })
-
-                markersRef.current.push(marker)
-              }
-            })
+                  marker.addListener('click', () => {
+                    if (place.geometry?.location) {
+                      googleMap.current!.setCenter(place.geometry.location)
+                      googleMap.current!.setZoom(17)
+                    }
+                  })
+                  markersRef.current.push(marker)
+                }
+              })
+            }
+            resolve()
           }
-          resolve()
-        })
+        )
       })
     )
 
     Promise.all(fetchPromises).then(() => {
       setPlaces(Array.from(allResults.values()))
     })
-  }
-
-  const clearMarkers = () => {
-    markersRef.current.forEach((marker) => marker.setMap(null))
-    markersRef.current = []
-  }
+  }, [selectedFoods, userLocation])
 
   useEffect(() => {
     if (googleMap.current && selectedFoods && userLocation) {
       searchMultipleFoods()
     }
-  }, [selectedFoods, userLocation])
+  }, [selectedFoods, userLocation, searchMultipleFoods])
 
   useEffect(() => {
     if (foodNames.length > 0) {

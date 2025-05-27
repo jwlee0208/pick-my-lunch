@@ -3,7 +3,7 @@ export type SiteConfig = typeof siteConfig
 export const siteConfig = {
   name: "Pick My Lunch",
   description:
-    "Today My Lunch Recommend",
+    "Pick My Lunch - Today My Lunch Recommend",
   mainNav: [
     {
       title: "Home",
