@@ -1,5 +1,5 @@
 // app/[locale]/layout.tsx
-import '@/styles/globals.css';
+import '../../styles/globals.css';
 import { ReactNode } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';

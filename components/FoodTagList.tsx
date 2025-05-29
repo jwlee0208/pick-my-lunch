@@ -17,14 +17,15 @@ export default function FoodTagList({ filteredFoods, focusedFood, setFocusedFood
   const displayFoods = showAll ? filteredFoods : filteredFoods.slice(0, MAX_TAGS)
 
   return (
-    <div className="flex flex-wrap gap-2 items-center py-2">
-      <div className="flex flex-wrap gap-2 items-center py-2">
+    <div className="flex flex-col items-center gap-4 py-2 w-full">
+      {/* Badge Area with Scroll */}
+      <div className="flex flex-wrap justify-center gap-2 w-full max-h-60 overflow-y-auto">
         {displayFoods.map((food) => (
           <Badge
             key={food}
             variant={focusedFood === food ? 'default' : 'outline'}
             onClick={() => setFocusedFood(food)}
-            className={`cursor-pointer transition-all text-sm px-3 py-1 ${
+            className={`cursor-pointer transition-all text-sm px-3 py-1 text-center ${
               focusedFood === food ? 'bg-indigo-600 text-white' : ''
             }`}
           >
@@ -32,16 +33,17 @@ export default function FoodTagList({ filteredFoods, focusedFood, setFocusedFood
           </Badge>
         ))}
       </div>
-      <div className="flex flex-wrap gap-2 items-center py-2">
-        {filteredFoods.length > MAX_TAGS && (
+      {/* Show More Button */}
+      {filteredFoods.length > MAX_TAGS && (
+        <div className="flex justify-center w-full">
           <button
             onClick={() => setShowAll(!showAll)}
-            className="text-xs text-blue-600 underline ml-1"
+            className="text-xs text-blue-600 underline text-center"
           >
             {showAll ? '접기 ▲' : '더보기 ▼'}
           </button>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   )
 }

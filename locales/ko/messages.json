@@ -1,11 +1,33 @@
 {
   "title": "점심 메뉴 추천",
-  "filter": {
+  "filters": {
+    "typeDefault": "선택해주세요",
+    "korean": "한식",
+    "japanese": "일식",
+    "chinese": "중식",
+    "western": "양식",
+    "southeast": "동남아시아",
+    "peopleDefault": "선택해주세요",
+    "alone": "혼자",
+    "friend": "친구",
+    "coworker": "직장동료",
+    "lover": "연인",
+    "family": "가족",
+    "baseDefault": "선택해주세요",
+    "noodle": "면",
+    "rice": "밥",
+    "bread": "빵",
+    "etc": "기타",
+    "styleDefault": "선택해주세요",
+    "simple": "간단히",
+    "full": "제대로",
     "reset": "초기화",
-    "selectType": "종류 선택",
-    "selectPeople": "동행 선택",
-    "selectBase": "기본 재료 선택",
-    "selectStyle": "식사 스타일"
+    "noResult": "선택한 조건에 맞는 음식이 없습니다.",
+    "typeLabel": "음식 종류",
+    "peopleLabel": "함께하는 사람",
+    "baseLabel": "주 재료",
+    "styleLabel": "스타일",
+    "selectDefault": "선택해주세요"
   },
   "recommend": {
     "button": "추천 음식 보기",
@@ -13,5 +35,22 @@
   },
   "no": {
     "result": "선택한 조건에 맞는 음식이 없습니다."
+  },
+  "foodMap": {
+    "showRecommendation": "추천 음식 보기",
+    "todayRecommendation": "오늘의 추천 메뉴"
+  },
+  "randomBox": {
+    "today": "오늘의 추천 메뉴:",
+    "accept": "이 음식으로 찾기",
+    "retry": "다시 추천",
+    "hide": "숨기기"
+  },
+  "placeList": {
+    "sortBy": "정렬 기준:",
+    "rating": "평점 순",
+    "distance": "거리 순",
+    "noInfo": "정보 없음",
+    "noMore": "더 이상 결과가 없습니다."
   }
 }

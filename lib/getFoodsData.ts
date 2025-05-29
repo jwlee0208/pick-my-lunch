@@ -1,6 +1,6 @@
-import foodsKo from '@/locales/ko/foods.json';
-import foodsEn from '@/locales/en/foods.json';
-import foodsJa from '@/locales/ja/foods.json';
+import foodsKo from '@/public/locales/ko/foods.json';
+import foodsEn from '@/public/locales/en/foods.json';
+import foodsJa from '@/public/locales/ja/foods.json';
 
 export function getFoodsData(locale: string) {
   switch (locale) {

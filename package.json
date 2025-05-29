@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3130",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -30,6 +30,7 @@
     "react-dom": "^18.3.1",
     "react-redux": "^9.2.0",
     "redux": "^5.0.1",
+    "sass": "^1.89.0",
     "sharp": "^0.31.3",
     "tailwind-merge": "^2.2.1",
     "tailwind-variants": "^1.0.0",

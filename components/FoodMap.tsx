@@ -8,6 +8,7 @@ import { Dice6 } from 'lucide-react'
 import RandomFoodBox from './RandomFoodBox'
 import PlaceList from './PlaceList'
 import { weightedRandomPick, WeightedFood } from '@/utils/weightedRandomPick'
+import { useTranslations } from 'next-intl' // ✅ 추가
 
 type Props = {
   foodNames: WeightedFood[]
@@ -15,6 +16,8 @@ type Props = {
 }
 
 const FoodMap = ({ foodNames, userLocation }: Props) => {
+  const t = useTranslations('foodMap') // ✅ 'foodMap' 네임스페이스 사용
+
   const mapRef = useRef<HTMLDivElement | null>(null)
   const googleMap = useRef<google.maps.Map | null>(null)
   const markersRef = useRef<google.maps.Marker[]>([])
@@ -99,37 +102,33 @@ const FoodMap = ({ foodNames, userLocation }: Props) => {
           query: food,
         }
 
-        service.textSearch(
-          request,
-          (
-            results: google.maps.places.PlaceResult[] | null,
-            status: google.maps.places.PlacesServiceStatus
-          ) => {
-            if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
-              results.forEach((place) => {
-                let isActivate = place.business_status != 'CLOSED_PERMANENTLY' && place.business_status != 'CLOSED_TEMPORARILY';
-                if (!allResults.has(place.place_id!) && place.geometry?.location && isActivate) {
-                  allResults.set(place.place_id!, place)
+        service.textSearch(request, (results, status) => {
+          if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
+            results.forEach((place) => {
+              const isActivate = place.business_status !== 'CLOSED_PERMANENTLY' &&
+                place.business_status !== 'CLOSED_TEMPORARILY'
+              if (!allResults.has(place.place_id!) && place.geometry?.location && isActivate) {
+                allResults.set(place.place_id!, place)
 
-                  const marker = new window.google.maps.Marker({
-                    map: googleMap.current!,
-                    position: place.geometry.location,
-                    title: place.name,
-                  })
+                const marker = new window.google.maps.Marker({
+                  map: googleMap.current!,
+                  position: place.geometry.location,
+                  title: place.name,
+                })
 
-                  marker.addListener('click', () => {
-                    if (place.geometry?.location) {
-                      googleMap.current!.setCenter(place.geometry.location)
-                      googleMap.current!.setZoom(17)
-                    }
-                  })
-                  markersRef.current.push(marker)
-                }
-              })
-            }
-            resolve()
+                marker.addListener('click', () => {
+                  if (place.geometry?.location) {
+                    googleMap.current!.setCenter(place.geometry.location)
+                    googleMap.current!.setZoom(17)
+                  }
+                })
+
+                markersRef.current.push(marker)
+              }
+            })
           }
-        )
+          resolve()
+        })
       })
     )
 
@@ -190,7 +189,7 @@ const FoodMap = ({ foodNames, userLocation }: Props) => {
           className="bg-red-100 hover:bg-red-200 text-red-700 flex items-center gap-2 text-sm"
         >
           <Dice6 className="h-4 w-4" />
-          추천 음식 보기
+          {t('showRecommendation')}
         </Button>
       </div>
 
@@ -199,10 +198,10 @@ const FoodMap = ({ foodNames, userLocation }: Props) => {
       {places.length > 0 && <PlaceList places={places} userLocation={userLocation} />}
 
       {showRandomFoodModal && (
-        <Dialog open onOpenChange={(open) => setShowRandomFoodModal(open)}>
+        <Dialog open onOpenChange={setShowRandomFoodModal}>
           <DialogContent className="rounded-lg bg-white dark:bg-gray-900 p-6 shadow-xl w-full max-w-md mx-auto">
             <div>
-              <DialogTitle className="mb-2">오늘의 추천 메뉴</DialogTitle>
+              <DialogTitle className="mb-2">{t('todayRecommendation')}</DialogTitle>
               <RandomFoodBox
                 foodNames={foodNames.map((f) => f.name)}
                 randomFood={randomFood}
