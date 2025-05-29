@@ -1,0 +1,11 @@
+{
+  "title": "Lunch Menu Recommendation",
+  "filter.reset": "Reset",
+  "filter.selectType": "Select Type",
+  "filter.selectPeople": "Select Companion",
+  "filter.selectBase": "Select Base",
+  "filter.selectStyle": "Select Style",
+  "recommend.button": "Show Recommendation",
+  "recommend.today": "Today's Recommendation",
+  "no.result": "No food matches the selected criteria."
+}

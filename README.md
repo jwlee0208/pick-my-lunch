@@ -123,7 +123,7 @@ npm run format:write
 ├── styles/               # Tailwind and global styles
 ├── public/               # Static assets
 ├── tsconfig.json         # TypeScript configuration
-└── tailwind.config.js    # Tailwind configuration
+└── tailwind.config.ts    # Tailwind configuration
 ```
 
 ---
