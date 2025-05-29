@@ -841,7 +841,7 @@
     "weight": 1.0
   },
   {
-    "name": "마르게리타 피자",
+    "name": "마르게리타 Pizza",
     "type": [
       "Western"
     ],
@@ -861,7 +861,7 @@
     "weight": 1.0
   },
   {
-    "name": "알프레도 파스타",
+    "name": "알프레도 Pasta",
     "type": [
       "Western"
     ],
@@ -881,7 +881,7 @@
     "weight": 1.0
   },
   {
-    "name": "샌드위치",
+    "name": "Sandwich",
     "type": [
       "Western"
     ],
@@ -981,7 +981,7 @@
     "weight": 1.0
   },
   {
-    "name": "토마토 파스타",
+    "name": "토마토 Pasta",
     "type": [
       "Western"
     ],
@@ -1061,7 +1061,7 @@
     "weight": 1.0
   },
   {
-    "name": "페퍼로니 피자",
+    "name": "페퍼로니 Pizza",
     "type": [
       "Western"
     ],
@@ -1141,7 +1141,7 @@
     "weight": 1.0
   },
   {
-    "name": "고르곤졸라 피자",
+    "name": "고르곤졸라 Pizza",
     "type": [
       "Western"
     ],
@@ -1161,7 +1161,7 @@
     "weight": 1.0
   },
   {
-    "name": "쉬림프파스타",
+    "name": "쉬림프 Pasta",
     "type": [
       "Western"
     ],
@@ -1201,7 +1201,7 @@
     "weight": 1.0
   },
   {
-    "name": "돈부리",
+    "name": "Donburi",
     "type": [
       "Japanese"
     ],
@@ -1221,7 +1221,7 @@
     "weight": 1.0
   },
   {
-    "name": "우동",
+    "name": "Udon",
     "type": [
       "Japanese"
     ],
@@ -1241,7 +1241,7 @@
     "weight": 1.0
   },
   {
-    "name": "초밥",
+    "name": "Sushi",
     "type": [
       "Japanese"
     ],

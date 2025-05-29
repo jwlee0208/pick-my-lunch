@@ -17,9 +17,9 @@ export default async function LocaleLayout({
   const { locale } = await params;
   let messages;
   try {
-    console.log(`Locale: ${locale}`);
+    // console.log(`Locale: ${locale}`);
     messages = await getMessages({ locale } as { locale: string }); // 타입 단언 추가
-    console.log(`Messages:`, messages);
+    // console.log(`Messages:`, messages);
   } catch (error) {
     console.error(`Error loading messages:`, error);
     notFound();
