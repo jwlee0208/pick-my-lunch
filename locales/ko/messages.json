@@ -1,11 +1,17 @@
 {
   "title": "점심 메뉴 추천",
-  "filter.reset": "초기화",
-  "filter.selectType": "종류 선택",
-  "filter.selectPeople": "동행 선택",
-  "filter.selectBase": "기본 재료 선택",
-  "filter.selectStyle": "식사 스타일",
-  "recommend.button": "추천 음식 보기",
-  "recommend.today": "오늘의 추천 메뉴",
-  "no.result": "선택한 조건에 맞는 음식이 없습니다."
+  "filter": {
+    "reset": "초기화",
+    "selectType": "종류 선택",
+    "selectPeople": "동행 선택",
+    "selectBase": "기본 재료 선택",
+    "selectStyle": "식사 스타일"
+  },
+  "recommend": {
+    "button": "추천 음식 보기",
+    "today": "오늘의 추천 메뉴"
+  },
+  "no": {
+    "result": "선택한 조건에 맞는 음식이 없습니다."
+  }
 }
