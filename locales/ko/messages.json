@@ -48,9 +48,13 @@
   },
   "placeList": {
     "sortBy": "정렬 기준:",
-    "rating": "평점 순",
-    "distance": "거리 순",
+    "sortByRating": "평점순",
+    "sortByDistance": "거리순",
     "noInfo": "정보 없음",
-    "noMore": "더 이상 결과가 없습니다."
+    "noMore": "더 이상 결과가 없습니다.",
+    "title": "장소 목록",
+    "noPlaces": "근처에 장소가 없습니다.",
+    "unknownDistance": "거리 정보 없음",
+    "noRating": "평점 없음"
   }
 }

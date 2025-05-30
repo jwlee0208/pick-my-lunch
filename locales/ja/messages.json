@@ -47,10 +47,14 @@
     "hide": "非表示にする"
   },
   "placeList": {
-    "sortBy": "並び替え：",
-    "rating": "評価順",
-    "distance": "距離順",
+    "sortBy": "並べ替え:",
+    "sortByRating": "評価順",
+    "sortByDistance": "距離順",
     "noInfo": "情報なし",
-    "noMore": "これ以上の結果はありません。"
+    "noMore": "これ以上の結果はありません。",
+    "title": "場所リスト",
+    "noPlaces": "近くに場所が見つかりません。",
+    "unknownDistance": "距離不明",
+    "noRating": "評価なし"
   }
 }

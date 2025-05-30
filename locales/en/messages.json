@@ -48,9 +48,13 @@
   },
   "placeList": {
     "sortBy": "Sort by:",
-    "rating": "By rating",
-    "distance": "By distance",
+    "sortByRating": "By rating",
+    "sortByDistance": "By distance",
     "noInfo": "No information",
-    "noMore": "No more results."
+    "noMore": "No more results.",
+    "title": "Place List",
+    "noPlaces": "No places found nearby.",
+    "unknownDistance": "Distance unknown",
+    "noRating": "No rating"
   }
 }
