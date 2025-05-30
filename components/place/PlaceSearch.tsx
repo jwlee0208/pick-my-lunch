@@ -33,6 +33,7 @@ interface KakaoPlace {
   x: string
   y: string
   distance?: string
+  place_url?: string // 상세 페이지 URL
 }
 
 interface PlaceSearchProps {
@@ -73,6 +74,7 @@ const PlaceSearch = ({
       }
 
       const newResults = new Map<string, Place>()
+      const markers: any[] = [] // Kakao Maps 마커 저장
 
       if (locale === 'en') {
         if (!window.google?.maps?.places) {
@@ -114,7 +116,7 @@ const PlaceSearch = ({
                       return
                     }
 
-                    newResults.set(place.place_id, {
+                    const placeData: Place = {
                       place_id: place.place_id,
                       name: place.name || '',
                       formatted_address: place.formatted_address || '',
@@ -122,7 +124,17 @@ const PlaceSearch = ({
                       business_status: place.business_status,
                       rating: place.rating,
                       vicinity: place.vicinity,
+                      source: 'google',
+                    }
+                    newResults.set(place.place_id, placeData)
+
+                    // Google Maps 마커 추가
+                    const marker = new window.google.maps.Marker({
+                      position: { lat, lng },
+                      map: mapInstance.current,
+                      title: place.name,
                     })
+                    markers.push(marker)
                   })
                 } else {
                   console.warn(`Google Places 검색 실패: ${status}, 키워드: ${food}`)
@@ -155,15 +167,25 @@ const PlaceSearch = ({
                       console.warn(`유효하지 않은 좌표: id=${item.id}, x=${item.x}, y=${item.y}`)
                       continue
                     }
-                    places.push({
+                    const placeData: Place = {
                       place_id: item.id,
                       name: item.place_name,
                       formatted_address: item.road_address_name || item.address_name,
                       geometry: { location: { lat, lng } },
                       business_status: 'OPERATIONAL',
                       vicinity: item.address_name,
-                      distance: item.distance ? parseFloat(item.distance) / 1000 : null, // 미터 → km
+                      distance: item.distance ? parseFloat(item.distance) / 1000 : null,
+                      source: 'kakao',
+                      place_url: item.place_url,
+                    }
+                    places.push(placeData)
+
+                    const marker = new window.kakao.maps.Marker({
+                      map: mapInstance.current,
+                      position: new window.kakao.maps.LatLng(lat, lng),
+                      title: item.place_name,
                     })
+                    markers.push(marker)
                   }
                   resolve(places)
                 } else {

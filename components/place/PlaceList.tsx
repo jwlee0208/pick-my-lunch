@@ -1,12 +1,12 @@
 'use client'
 
-import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react'
+import React, {useEffect, useRef, useState, useCallback, useMemo} from 'react'
 import { Star, MapPin, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Place } from '@/types/place'
 import { useTranslations } from 'next-intl'
+import { Place } from '@/types/place'
 
 type Props = {
   places: Place[]
@@ -19,7 +19,6 @@ const PlaceList = ({ places, userLocation }: Props) => {
   const [sortKey, setSortKey] = useState<'rating' | 'distance'>('rating')
   const listRef = useRef<HTMLUListElement | null>(null)
 
-  // 거리 계산 함수
   const calculateDistance = useCallback((place: Place): number | null => {
     if (!place.geometry?.location) return null
     const { lat, lng } = place.geometry.location
@@ -31,10 +30,9 @@ const PlaceList = ({ places, userLocation }: Props) => {
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(toRad(userLocation.lat)) * Math.cos(toRad(lat)) * Math.sin(dLon / 2) * Math.sin(dLon / 2)
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-    return R * c // km 단위
+    return R * c
   }, [userLocation])
 
-  // 폐업 장소 필터링 및 거리 추가
   const placesWithDistance = useMemo(() => {
     return places
       .filter(
@@ -46,7 +44,6 @@ const PlaceList = ({ places, userLocation }: Props) => {
       }))
   }, [places, calculateDistance])
 
-  // 정렬된 장소 목록
   const sortedPlaces = useMemo(() => {
     return [...placesWithDistance].sort((a, b) => {
       if (sortKey === 'rating') {
@@ -63,7 +60,6 @@ const PlaceList = ({ places, userLocation }: Props) => {
     })
   }, [placesWithDistance, sortKey])
 
-  // 스크롤 핸들러
   const handleScroll = useCallback(() => {
     if (!listRef.current) return
     const { scrollTop, scrollHeight, clientHeight } = listRef.current
@@ -72,16 +68,21 @@ const PlaceList = ({ places, userLocation }: Props) => {
     }
   }, [sortedPlaces.length])
 
-  // 정렬/장소 변경 시 초기화
   useEffect(() => {
     setVisibleItemCount(10)
   }, [sortKey, sortedPlaces.length])
 
-  // 거리 포맷팅
   const formatDistance = (meters: number | null) => {
     if (meters == null) return t('unknownDistance')
     if (meters < 1) return `${Math.round(meters * 1000)}m`
     return `${meters.toFixed(1)}km`
+  }
+
+  const getDetailUrl = (place: Place) => {
+    if (place.source === 'kakao' && place.place_url) {
+      return place.place_url
+    }
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name)}&query_place_id=${place.place_id}`
   }
 
   return (
@@ -112,7 +113,7 @@ const PlaceList = ({ places, userLocation }: Props) => {
                 key={place.place_id}
                 className="p-4 hover:bg-muted cursor-pointer transition-colors"
                 onClick={() => {
-                  const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name)}&query_place_id=${place.place_id}`
+                  const url = getDetailUrl(place)
                   window.open(url, '_blank', 'noopener,noreferrer')
                 }}
               >
