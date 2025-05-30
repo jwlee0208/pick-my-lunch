@@ -27,23 +27,16 @@ const FoodRecommendation = ({ foodNames, onFoodSelected, onClearPlaces }: FoodRe
     }
   }, [foodNames])
 
-  const handleAcceptRandomFood = () => {
-    setHasUserInteracted(true)
-    setShowRandomFoodModal(false)
-    onFoodSelected(randomFood)
-  }
-
   const handleRePick = () => {
     const otherFoods = foodNames.filter((f) => f.name !== randomFood)
     const random = weightedRandomPick(otherFoods)
     setRandomFood(random)
   }
 
-  const handleDismissRandomFood = () => {
-    setRandomFood(null)
+  const handleAcceptRandomFood = () => {
     setHasUserInteracted(true)
     setShowRandomFoodModal(false)
-    onFoodSelected(null)
+    onFoodSelected(randomFood) // Pass randomFood directly
   }
 
   const handleShowRecommendation = () => {
@@ -54,6 +47,17 @@ const FoodRecommendation = ({ foodNames, onFoodSelected, onClearPlaces }: FoodRe
     }
     setShowRandomFoodModal(true)
     setHasUserInteracted(false)
+  }
+
+  const handleDismissRandomFood = () => {
+    setRandomFood(null)
+    setHasUserInteracted(true)
+    setShowRandomFoodModal(false)
+    onFoodSelected(null) // Pass null to reset to all foods
+    if (foodNames.length > 0) {
+      const random = weightedRandomPick(foodNames)
+      setRandomFood(random)
+    }
   }
 
   return (
@@ -71,7 +75,7 @@ const FoodRecommendation = ({ foodNames, onFoodSelected, onClearPlaces }: FoodRe
 
       {showRandomFoodModal && (
         <Dialog open onOpenChange={setShowRandomFoodModal}>
-          <DialogContent className="rounded-lg bg-white dark:bg-gray-900 p-6 shadow-xl w-full max-w-md mx-auto">
+          <DialogContent className="rounded-lg bg-white dark:bg-gray-900 p-6 shadow-xl w-full max-w-md mx-auto" aria-describedby="recommendation-description">
             <div>
               <DialogTitle className="mb-2">{t('todayRecommendation')}</DialogTitle>
               <RandomFoodBox

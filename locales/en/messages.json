@@ -1,6 +1,6 @@
 {
-  "title": "Lunch Menu Recommendation",
   "filters": {
+    "title": "Lunch Menu Recommendation",
     "typeDefault": "Please select",
     "korean": "Korean",
     "japanese": "Japanese",

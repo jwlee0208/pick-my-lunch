@@ -1,6 +1,6 @@
 {
-  "title": "점심 메뉴 추천",
   "filters": {
+    "title": "점심 메뉴 추천",
     "typeDefault": "선택해주세요",
     "korean": "한식",
     "japanese": "일식",

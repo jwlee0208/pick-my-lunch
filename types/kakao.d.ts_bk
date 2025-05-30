@@ -34,6 +34,10 @@ interface KakaoPlace {
   address_name: string
   x: string
   y: string
+  category_name?: string
+  phone?: string
+  place_url?: string
+  road_address_name?: string
 }
 
 export {}

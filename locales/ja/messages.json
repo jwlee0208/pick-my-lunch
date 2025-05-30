@@ -1,6 +1,6 @@
 {
-  "title": "Lunch Menu Recommendation",
   "filters": {
+    "title": "Lunch Menu Recommendation",
     "typeDefault": "選択してください",
     "korean": "韓国料理",
     "japanese": "日本料理",

@@ -1,56 +1,40 @@
 'use client'
 
 import React, { useRef, useState, useCallback } from 'react'
-import MapContainer from './MapContainer'
-import PlaceSearch from './PlaceSearch'
-import MarkerManager from './MarkerManager'
+import MapContainer from './map/MapContainer'
+import PlaceSearch from './place/PlaceSearch'
+import MarkerManager from './map/MarkerManager'
 import FoodRecommendation from './FoodRecommendation'
-import PlaceList from './PlaceList'
+import PlaceList from './place/PlaceList'
 import { WeightedFood } from '@/utils/weightedRandomPick'
-
-interface Place {
-  place_id: string
-  name: string
-  formatted_address: string
-  geometry: { location: { lat: number; lng: number } }
-  business_status?: string
-}
+import { Place } from '@/types/place'
 
 type Props = {
   foodNames: WeightedFood[]
+  recommendedFood: string | null
+  selectedFoods: string[]
   userLocation: { lat: number; lng: number }
 }
 
-const FoodMap = ({ foodNames, userLocation }: Props) => {
+const FoodMap = ({ foodNames, recommendedFood, selectedFoods, userLocation }: Props) => {
   const mapInstance = useRef<any>(null)
   const markersRef = useRef<any[]>([])
   const isMapInitialized = useRef(false)
   const [places, setPlaces] = useState<Place[]>([])
-  const [selectedFood, setSelectedFood] = useState<string | null>(null)
-
-  const selectedFoods = useCallback(() => {
-    return selectedFood ? [selectedFood] : foodNames.map(f => f.name)
-  }, [selectedFood, foodNames])
 
   const handleMapLoaded = () => {
-    if (selectedFoods().length > 0) {
-      // Trigger search when map is loaded
-    }
+    console.log('지도 로드 완료')
+    isMapInitialized.current = true
   }
 
   const handleClearPlaces = () => {
     setPlaces([])
-    markersRef.current.forEach(marker => marker.setMap(null))
+    markersRef.current.forEach((marker) => marker.setMap(null))
     markersRef.current = []
   }
 
   return (
     <div className="w-full space-y-4">
-      <FoodRecommendation
-        foodNames={foodNames}
-        onFoodSelected={setSelectedFood}
-        onClearPlaces={handleClearPlaces}
-      />
       <MapContainer
         userLocation={userLocation}
         mapInstance={mapInstance}
@@ -58,9 +42,11 @@ const FoodMap = ({ foodNames, userLocation }: Props) => {
         onMapLoaded={handleMapLoaded}
       />
       <PlaceSearch
-        selectedFoods={selectedFoods()}
+        recommendedFood={recommendedFood}
+        selectedFoods={selectedFoods}
         userLocation={userLocation}
         mapInstance={mapInstance}
+        isMapInitialized={isMapInitialized}
         onPlacesUpdated={setPlaces}
       />
       <MarkerManager places={places} mapInstance={mapInstance} markersRef={markersRef} />

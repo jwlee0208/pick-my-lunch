@@ -1,16 +1,14 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
-import { useTranslations } from 'next-intl'
+import { Place } from '@/types/place' // Place 타입 임포트
 
 type Props = {
-  places: any[]
+  places: Place[] // any[] → Place[]로 변경
   userLocation: { lat: number; lng: number }
 }
 
 const PlaceList = ({ places, userLocation }: Props) => {
-  const t = useTranslations('placeList')
-
   const [displayCount, setDisplayCount] = useState(10)
   const [sortKey, setSortKey] = useState<'rating' | 'distance'>('rating')
   const listRef = useRef<HTMLUListElement | null>(null)
@@ -22,8 +20,7 @@ const PlaceList = ({ places, userLocation }: Props) => {
     const dLon = toRad(lng2 - lng1)
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-      Math.sin(dLon / 2) * Math.sin(dLon / 2)
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2)
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
     return R * c
   }
@@ -33,16 +30,16 @@ const PlaceList = ({ places, userLocation }: Props) => {
       ? getDistance(
         userLocation.lat,
         userLocation.lng,
-        place.geometry.location.lat(),
-        place.geometry.location.lng()
+        place.geometry.location.lat, // lat() → lat
+        place.geometry.location.lng // lng() → lng
       )
       : null
     return { ...place, distance }
   })
 
+  // 폐업 장소 제거
   const filteredPlaces = placesWithDistance.filter(
-    (place) => place.business_status !== 'CLOSED_PERMANENTLY' &&
-      place.business_status !== 'CLOSED_TEMPORARILY'
+    (place) => place.business_status !== 'CLOSED_PERMANENTLY' && place.business_status !== 'CLOSED_TEMPORARILY'
   )
 
   const sortedPlaces = filteredPlaces.sort((a, b) => {
@@ -71,14 +68,14 @@ const PlaceList = ({ places, userLocation }: Props) => {
     <div className="space-y-2">
       <div className="text-sm">
         <label>
-          {t('sortBy')}&nbsp;
+          정렬 기준:
           <select
             value={sortKey}
             onChange={(e) => setSortKey(e.target.value as 'rating' | 'distance')}
             className="border rounded-md px-2 py-1 text-sm"
           >
-            <option value="rating">{t('rating')}</option>
-            <option value="distance">{t('distance')}</option>
+            <option value="rating">평점 순</option>
+            <option value="distance">거리 순</option>
           </select>
         </label>
       </div>
@@ -93,20 +90,20 @@ const PlaceList = ({ places, userLocation }: Props) => {
             key={place.place_id || idx}
             className="p-4 hover:bg-muted cursor-pointer"
             onClick={() => {
-              const url = `https://www.google.com/maps/search/?api=1&query=${place.name}&query_place_id=${place.place_id}`
+              const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name)}&query_place_id=${place.place_id}`
               window.open(url, '_blank', 'noopener,noreferrer')
             }}
           >
             <div className="font-bold text-base">{place.name}</div>
             <div className="text-sm text-gray-500">{place.formatted_address || place.vicinity}</div>
             <div className="text-xs text-gray-400">
-              ⭐ {t('rating')}: {place.rating ?? t('noInfo')}
-              {place.distance !== null && <> / {t('distance')}: {place.distance.toFixed(2)} km</>}
+              ⭐ 평점: {place.rating ?? '정보 없음'}
+              {place.distance !== null && <> / 거리: {place.distance.toFixed(2)} km</>}
             </div>
           </li>
         ))}
         {displayCount >= places.length && (
-          <li className="text-center text-gray-400 py-3">{t('noMore')}</li>
+          <li className="text-center text-gray-400 py-3">더 이상 결과가 없습니다.</li>
         )}
       </ul>
     </div>

@@ -1,18 +1,17 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { Utensils, RefreshCcw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import FilterSection from '@/components/FilterSection'
 import FoodMap from '@/components/FoodMap'
-import FoodTagList from "@/components/FoodTagList"
+import FoodTagList from '@/components/FoodTagList'
+import FoodRecommendation from '@/components/FoodRecommendation'
 import { WeightedFood } from '@/utils/weightedRandomPick'
 import { useTranslations } from 'next-intl'
 
 type Props = {
-  params: {
-    locale: string
-  }
+  params: { locale: string }
 }
 
 const typesKey = ['typeDefault', 'korean', 'japanese', 'chinese', 'western', 'southeast']
@@ -32,10 +31,10 @@ type Food = {
 export default function Home({ params: { locale } }: Props) {
   const t = useTranslations('filters')
 
-  const types = typesKey.map(key => t(key))
-  const peoples = peoplesKey.map(key => t(key))
-  const bases = basesKey.map(key => t(key))
-  const styles = stylesKey.map(key => t(key))
+  const types = typesKey.map((key) => t(key))
+  const peoples = peoplesKey.map((key) => t(key))
+  const bases = basesKey.map((key) => t(key))
+  const styles = stylesKey.map((key) => t(key))
 
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null)
   const [selectedType, setSelectedType] = useState(types[0])
@@ -43,9 +42,12 @@ export default function Home({ params: { locale } }: Props) {
   const [selectedBase, setSelectedBase] = useState(bases[0])
   const [selectedStyle, setSelectedStyle] = useState(styles[0])
   const [focusedFood, setFocusedFood] = useState<string | null>(null)
-  const [foodsData, setFoodsData] = useState<Food[]>([])  // ✅ 다국어 foods 데이터 상태
+  const [foodsData, setFoodsData] = useState<Food[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [recommendedFood, setRecommendedFood] = useState<string | null>(null)
+  const [selectedFoods, setSelectedFoods] = useState<string[]>([])
 
-  // ✅ 사용자 위치 가져오기
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -55,26 +57,31 @@ export default function Home({ params: { locale } }: Props) {
             lng: position.coords.longitude,
           })
         },
-        (error) => console.error('Geolocation error:', error)
+        (error) => console.error('위치 정보 오류:', error)
       )
     }
   }, [])
 
-  // ✅ 언어에 맞는 foods.json 불러오기
   useEffect(() => {
     const loadFoods = async () => {
       try {
         const res = await fetch(`/locales/${locale}/foods.json`)
-        if (!res.ok) throw new Error('Failed to load foods.json')
+        if (!res.ok) throw new Error('음식 데이터를 가져오지 못했습니다')
         const data = await res.json()
         setFoodsData(data)
+        setLoading(false)
       } catch (error) {
-        console.error('Error loading foods.json:', error)
+        console.error('음식 데이터 로드 오류:', error)
+        setError('음식 데이터를 로드하지 못했습니다')
+        setLoading(false)
       }
     }
-
     loadFoods()
   }, [locale])
+
+  useEffect(() => {
+    console.log('focusedFood 변경됨:', focusedFood)
+  }, [focusedFood])
 
   const resetFilters = () => {
     setSelectedType(types[0])
@@ -82,61 +89,111 @@ export default function Home({ params: { locale } }: Props) {
     setSelectedBase(bases[0])
     setSelectedStyle(styles[0])
     setFocusedFood(null)
+    setSelectedFoods([])
+    setRecommendedFood(null)
   }
 
-  const filteredFoods: WeightedFood[] = foodsData
-    .filter((food: Food) => {
-      if (focusedFood) return food.name === focusedFood
+  const filteredFoods: WeightedFood[] = useMemo(() => {
+    console.log('filteredFoods 계산됨:', foodsData.length)
+    return foodsData
+      .filter((food: Food) => {
+        if (focusedFood) return food.name === focusedFood
+        const typeMatch = selectedType === types[0] || food.type.includes(selectedType)
+        const peopleMatch = selectedPeople === peoples[0] || food.people.includes(selectedPeople)
+        const baseMatch = selectedBase === bases[0] || food.base.includes(selectedBase)
+        const styleMatch = selectedStyle === styles[0] || food.style.includes(selectedStyle)
+        return typeMatch && (peopleMatch || baseMatch || styleMatch)
+      })
+      .map((food: Food) => ({ name: food.name, weight: food.weight ?? 1 }))
+  }, [foodsData, focusedFood, selectedType, selectedPeople, selectedBase, selectedStyle, types])
 
-      const typeMatch = selectedType === types[0] || food.type.includes(selectedType)
-      const peopleMatch = selectedPeople === peoples[0] || food.people.includes(selectedPeople)
-      const baseMatch = selectedBase === bases[0] || food.base.includes(selectedBase)
-      const styleMatch = selectedStyle === styles[0] || food.style.includes(selectedStyle)
+  const handleSetFocusedFood = (food: string) => {
+    console.log('focusedFood 설정:', food)
+    setFocusedFood(food)
+    if (!selectedFoods.includes(food)) {
+      setSelectedFoods((prev) => [...prev, food])
+    }
+  }
 
-      return typeMatch && (peopleMatch || baseMatch || styleMatch)
-    })
-    .map((food: Food) => ({ name: food.name, weight: food.weight ?? 1 }))
+  const handleFoodSelected = (food: string | null) => {
+    if (food) {
+      setRecommendedFood(food)
+      if (!selectedFoods.includes(food)) {
+        setSelectedFoods((prev) => [...prev, food])
+      }
+    } else {
+      setRecommendedFood(null)
+      setSelectedFoods([])
+    }
+  }
+
+  const handleClearPlaces = () => {
+    setSelectedFoods([])
+    setRecommendedFood(null)
+  }
+
+  if (loading) {
+    return <div className="text-center py-6">로딩 중...</div>
+  }
+
+  if (error) {
+    return <div className="text-center py-6 text-red-600">에러: {error}</div>
+  }
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
-      <FilterSection
-        selectedType={selectedType}
-        setSelectedType={setSelectedType}
-        selectedPeople={selectedPeople}
-        setSelectedPeople={setSelectedPeople}
-        selectedBase={selectedBase}
-        setSelectedBase={setSelectedBase}
-        selectedStyle={selectedStyle}
-        setSelectedStyle={setSelectedStyle}
-        types={types}
-        peoples={peoples}
-        bases={bases}
-        styles={styles}
+      <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <h2 className="text-3xl font-bold text-gray-900 flex items-center gap-2" style={{ textAlign: 'center' }}>
+          <Utensils size={28} className="text-indigo-600" /> {t('title')}
+        </h2>
+      </header>
+      <section className="flex flex-row flex-wrap gap-4 border border-red-500 p-4" style={{ textAlign: 'center' }}>
+        <FilterSection
+          selectedType={selectedType}
+          setSelectedType={setSelectedType}
+          selectedPeople={selectedPeople}
+          setSelectedPeople={setSelectedPeople}
+          selectedBase={selectedBase}
+          setSelectedBase={setSelectedBase}
+          selectedStyle={selectedStyle}
+          setSelectedStyle={setSelectedStyle}
+          types={types}
+          peoples={peoples}
+          bases={bases}
+          styles={styles}
+        />
+      </section>
+      <FoodRecommendation
+        foodNames={filteredFoods}
+        onFoodSelected={handleFoodSelected}
+        onClearPlaces={handleClearPlaces}
       />
-
       {filteredFoods.length > 0 && (
-        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <section className="w-full">
           <FoodTagList
-            filteredFoods={filteredFoods.map(f => f.name)}
+            filteredFoods={filteredFoods.map((f) => f.name)}
             focusedFood={focusedFood}
-            setFocusedFood={setFocusedFood}
+            setFocusedFood={handleSetFocusedFood}
           />
-          <Button variant="outline" onClick={resetFilters} className="gap-2">
-            <RefreshCcw size={16} /> {t('reset')}
-          </Button>
+          <div className="flex justify-center mt-4">
+            <Button variant="outline" onClick={resetFilters} className="gap-2" style={{ padding: '0.5rem' }}>
+              <RefreshCcw size={16} /> {t('reset')}
+            </Button>
+          </div>
         </section>
       )}
-
       {userLocation && filteredFoods.length > 0 && (
         <section>
-          <FoodMap foodNames={filteredFoods} userLocation={userLocation} />
+          <FoodMap
+            foodNames={filteredFoods}
+            recommendedFood={recommendedFood}
+            selectedFoods={selectedFoods}
+            userLocation={userLocation}
+          />
         </section>
       )}
-
       {filteredFoods.length === 0 && (
-        <p className="mt-6 text-center text-red-600 font-semibold">
-          {t('noResult')}
-        </p>
+        <p className="mt-6 text-center text-red-600 font-semibold">{t('noResult')}</p>
       )}
     </div>
   )

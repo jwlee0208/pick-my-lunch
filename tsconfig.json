@@ -29,9 +29,9 @@
       }
     ],
     "strictNullChecks": true,
-    "types": [
-      "google.maps",
-      "next-intl"
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
     ],
     "target": "esnext"
   },

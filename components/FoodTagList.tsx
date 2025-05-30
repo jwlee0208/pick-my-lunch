@@ -24,7 +24,10 @@ export default function FoodTagList({ filteredFoods, focusedFood, setFocusedFood
           <Badge
             key={food}
             variant={focusedFood === food ? 'default' : 'outline'}
-            onClick={() => setFocusedFood(food)}
+            onClick={() => {
+              console.log('Badge 클릭됨:', food);
+              setFocusedFood(food)
+            }}
             className={`cursor-pointer transition-all text-sm px-3 py-1 text-center ${
               focusedFood === food ? 'bg-indigo-600 text-white' : ''
             }`}
