@@ -95,17 +95,41 @@ export default function Home({ params: { locale } }: Props) {
 
   const filteredFoods: WeightedFood[] = useMemo(() => {
     console.log('filteredFoods 계산됨:', foodsData.length)
+
     return foodsData
       .filter((food: Food) => {
         if (focusedFood) return food.name === focusedFood
+
+        // type은 무조건 일치해야 함
         const typeMatch = selectedType === types[0] || food.type.includes(selectedType)
-        const peopleMatch = selectedPeople === peoples[0] || food.people.includes(selectedPeople)
-        const baseMatch = selectedBase === bases[0] || food.base.includes(selectedBase)
-        const styleMatch = selectedStyle === styles[0] || food.style.includes(selectedStyle)
-        return typeMatch && (peopleMatch || baseMatch || styleMatch)
+        if (!typeMatch) return false
+
+        // people, base, style 중 하나 이상 매치되면 통과
+        const peopleMatch = selectedPeople !== peoples[0] && food.people.includes(selectedPeople)
+        const baseMatch = selectedBase !== bases[0] && food.base.includes(selectedBase)
+        const styleMatch = selectedStyle !== styles[0] && food.style.includes(selectedStyle)
+
+        const hasOtherFilters = selectedPeople !== peoples[0] || selectedBase !== bases[0] || selectedStyle !== styles[0]
+        const additionalMatch = !hasOtherFilters || peopleMatch || baseMatch || styleMatch
+
+        return additionalMatch
       })
-      .map((food: Food) => ({ name: food.name, weight: food.weight ?? 1 }))
-  }, [foodsData, focusedFood, selectedType, selectedPeople, selectedBase, selectedStyle, types])
+      .map((food: Food) => ({
+        name: food.name,
+        weight: food.weight ?? 1,
+      }))
+  }, [
+    foodsData,
+    focusedFood,
+    selectedType,
+    selectedPeople,
+    selectedBase,
+    selectedStyle,
+    types,
+    peoples,
+    bases,
+    styles,
+  ])
 
   const handleSetFocusedFood = (food: string) => {
     console.log('focusedFood 설정:', food)
