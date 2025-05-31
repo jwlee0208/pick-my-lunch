@@ -1,0 +1,60 @@
+{
+  "filters": {
+    "title": "Lunch Menu Recommendation",
+    "typeDefault": "選択してください",
+    "korean": "韓国料理",
+    "japanese": "日本料理",
+    "chinese": "中華料理",
+    "western": "洋食",
+    "southeast": "東南アジア料理",
+    "peopleDefault": "選択してください",
+    "alone": "一人で",
+    "friend": "友達と",
+    "coworker": "同僚と",
+    "lover": "恋人と",
+    "family": "家族と",
+    "baseDefault": "選択してください",
+    "noodle": "麺",
+    "rice": "ご飯",
+    "bread": "パン",
+    "etc": "その他",
+    "styleDefault": "選択してください",
+    "simple": "軽く",
+    "full": "しっかり",
+    "reset": "リセット",
+    "noResult": "選択した条件に一致する料理がありません。",
+    "typeLabel": "料理の種類",
+    "peopleLabel": "誰と一緒に",
+    "baseLabel": "主な材料",
+    "styleLabel": "スタイル",
+    "selectDefault": "選択してください"
+  },
+  "recommend": {
+    "button": "Show Recommendation",
+    "today": "Today's Recommendation"
+  },
+  "no": {
+    "result": "No food matches the selected criteria."
+  },
+  "foodMap": {
+    "showRecommendation": "おすすめの料理を見る",
+    "todayRecommendation": "本日のおすすめメニュー"
+  },
+  "randomBox": {
+    "today": "本日のおすすめメニュー：",
+    "accept": "この料理で検索",
+    "retry": "もう一度おすすめ",
+    "hide": "非表示にする"
+  },
+  "placeList": {
+    "sortBy": "並べ替え:",
+    "sortByRating": "評価順",
+    "sortByDistance": "距離順",
+    "noInfo": "情報なし",
+    "noMore": "これ以上の結果はありません。",
+    "title": "場所リスト",
+    "noPlaces": "近くに場所が見つかりません。",
+    "unknownDistance": "距離不明",
+    "noRating": "評価なし"
+  }
+}

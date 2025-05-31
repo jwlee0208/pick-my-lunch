@@ -1,0 +1,1863 @@
+[
+  {
+    "name": "Kimchi Stew",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day",
+      "Rainy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Banquet Noodles",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "Alone",
+      "With Family"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Rainy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Bibimbap",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "kimbap",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Spicy Pork Rice",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "된장찌개",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "With Family",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Bulgogi Rice Bowl",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Kimchi Fried Rice",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Rainy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Korean Spicy Soft Tofu Stew",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "Alone",
+      "With Family"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Noodle Soup(Kalguksu)",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "With Family",
+      "With Coworkers"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Rainy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Tteokbokki",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Partner"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Cold Noodles",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Japchae",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "With Family",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Spicy Stir-fried Squid",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Bibimbap",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "Alone",
+      "With Family"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Pork Bulgogi",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Kimchi Pancake",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Rainy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Beef and Rice Soup",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "Alone",
+      "With Family"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Seafood Green Onion Pancake",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Rainy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Banquet Noodles",
+    "type": [
+      "Korean"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Mapo Tofu",
+    "type": [
+      "Chinese"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Mongolian Beef",
+    "type": [
+      "Chinese"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Black Bean Source Noodle",
+    "type": [
+      "Chinese"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Wonton Soup",
+    "type": [
+      "Chinese"
+    ],
+    "people": [
+      "Alone",
+      "With Family"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Rainy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Dumplings",
+    "type": [
+      "Chinese"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Chop Suey",
+    "type": [
+      "Chinese"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Fried Rice",
+    "type": [
+      "Chinese"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Kung Pao Chicken",
+    "type": [
+      "Chinese"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Sweet and Sour Pork",
+    "type": [
+      "Chinese"
+    ],
+    "people": [
+      "With Family",
+      "With Coworkers"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Rainy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Orange Chicken",
+    "type": [
+      "Chinese"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Prawn Toast",
+    "type": [
+      "Chinese"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Assorted Seafood Over Rice",
+    "type": [
+      "Chinese"
+    ],
+    "people": [
+      "Alone",
+      "With Family"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Rainy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Seafood Noodle Soup",
+    "type": [
+      "Chinese"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Rainy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Chili Shrimp",
+    "type": [
+      "Chinese"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Fried chicken in hot and sour soy sauce",
+    "type": [
+      "Chinese"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Korean Chinese meatballs",
+    "type": [
+      "Chinese"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Omurice",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Carbonara",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "With Partner",
+      "With Family"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Margherita Pizza",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Bread"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Alfredo Pasta",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "Alone",
+      "With Partner"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Sandwich",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Bread"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Chicken Salad",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Steak",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Lasagna",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "With Family",
+      "With Partner"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Hamburger",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Bread"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Tomato Pasta",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "Alone",
+      "With Partner"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Caesar Salad",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Chicken Tender",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Grilled Spicy Chicken Wrap",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Bread"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Pepperoni Pizza",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Bread"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Risotto",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "Alone",
+      "With Partner"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Gambas",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Creamy Potato Bacon Soup",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "Alone",
+      "With Family"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Gorgonzola Pizza",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Partner"
+    ],
+    "base": [
+      "Bread"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Shrimp Pasta",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "Alone",
+      "With Partner"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Quesadilla",
+    "type": [
+      "Western"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Bread"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Donburi",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Udon",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "With Family",
+      "With Coworkers"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Sushi",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Gyudon",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Ramen",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Onigiri",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Salmon Rice Bowl",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "Alone",
+      "With Partner"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Katsudon",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Soba",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "Alone",
+      "With Family"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Tempura",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Yakisoba",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Oyakodon",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "Alone",
+      "With Family"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Sakedon",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "Alone",
+      "With Partner"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Miso Ramen",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Takoyaki",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Partner"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Shabushabu",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "With Family",
+      "With Coworkers"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Katsu Sando",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Bread"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Tsukemen",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Salmon Sushi",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "Alone",
+      "With Partner"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Okonomiyaki",
+    "type": [
+      "Japanese"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Rainy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Pad Thai",
+    "type": [
+      "Southeast Asian"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Rice Noodle",
+    "type": [
+      "Southeast Asian"
+    ],
+    "people": [
+      "Alone",
+      "With Family"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Rainy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Nasi Goreng",
+    "type": [
+      "Southeast Asian"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Tom Yum Goong",
+    "type": [
+      "Southeast Asian"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Rainy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Curry",
+    "type": [
+      "Southeast Asian"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cold Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Mi Goreng",
+    "type": [
+      "Southeast Asian"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Pineapple Fried Rice",
+    "type": [
+      "Southeast Asian"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Khao Phat",
+    "type": [
+      "Southeast Asian"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Laksa",
+    "type": [
+      "Southeast Asian"
+    ],
+    "people": [
+      "Alone",
+      "With Family"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Rainy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Spring Roll",
+    "type": [
+      "Southeast Asian"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Satay",
+    "type": [
+      "Southeast Asian"
+    ],
+    "people": [
+      "With Coworkers",
+      "With Family"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Mango Sticky Rice",
+    "type": [
+      "Southeast Asian"
+    ],
+    "people": [
+      "Alone",
+      "With Partner"
+    ],
+    "base": [
+      "Rice"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Pad Si Ew",
+    "type": [
+      "Southeast Asian"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Banh Mi",
+    "type": [
+      "Southeast Asian"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Bread"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Poo Phad Pong Curry",
+    "type": [
+      "Southeast Asian"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Light"
+    ],
+    "weather": [
+      "Cloudy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Thai Coconut Soup",
+    "type": [
+      "Southeast Asian"
+    ],
+    "people": [
+      "Alone",
+      "With Family"
+    ],
+    "base": [
+      "Others"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Rainy Day"
+    ],
+    "weight": 1.0
+  },
+  {
+    "name": "Vermicelli Noodles with Grilled Pork",
+    "type": [
+      "Southeast Asian"
+    ],
+    "people": [
+      "Alone",
+      "With Coworkers"
+    ],
+    "base": [
+      "Noodle"
+    ],
+    "style": [
+      "Hearty"
+    ],
+    "weather": [
+      "Hot Day"
+    ],
+    "weight": 1.0
+  }
+]

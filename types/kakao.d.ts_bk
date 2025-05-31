@@ -1,26 +1,5 @@
-export {}
-
 declare global {
   interface Window {
-    googleTranslateElementInit?: () => void
-    google: {
-      maps?: typeof google.maps
-      translate: {
-        TranslateElement: {
-          new (
-            options: {
-              pageLanguage: string
-              includedLanguages?: string
-              layout?: any
-            },
-            container: string
-          ): void
-          InlineLayout: {
-            SIMPLE: any
-          }
-        }
-      }
-    }
     kakao: {
       maps: {
         Map: new (container: HTMLElement, options: { center: any; level: number }) => any
@@ -47,16 +26,18 @@ declare global {
       }
     }
   }
-
-  interface KakaoPlace {
-    id: string
-    place_name: string
-    address_name: string
-    x: string
-    y: string
-    category_name?: string
-    phone?: string
-    place_url?: string
-    road_address_name?: string
-  }
 }
+
+interface KakaoPlace {
+  id: string
+  place_name: string
+  address_name: string
+  x: string
+  y: string
+  category_name?: string
+  phone?: string
+  place_url?: string
+  road_address_name?: string
+}
+
+export {}

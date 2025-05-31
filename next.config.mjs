@@ -1,10 +1,13 @@
-/** @type {import('next').NextConfig} */
+// next.config.mjs
+import createNextIntlPlugin from 'next-intl/plugin';
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
     appDir: true,
   },
   svgo: false,
-}
+};
 
-export default nextConfig
+const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
+
+export default withNextIntl(nextConfig);

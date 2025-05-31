@@ -1,0 +1,60 @@
+{
+  "filters": {
+    "title": "Lunch Menu Recommendation",
+    "typeDefault": "Please select",
+    "korean": "Korean",
+    "japanese": "Japanese",
+    "chinese": "Chinese",
+    "western": "Western",
+    "southeast": "Southeast Asian",
+    "peopleDefault": "Please select",
+    "alone": "Alone",
+    "friend": "With Friends",
+    "coworker": "With Coworkers",
+    "lover": "With Partner",
+    "family": "With Family",
+    "baseDefault": "Please select",
+    "noodle": "Noodle",
+    "rice": "Rice",
+    "bread": "Bread",
+    "etc": "Others",
+    "styleDefault": "Please select",
+    "simple": "Light",
+    "full": "Hearty",
+    "reset": "Reset",
+    "noResult": "No food matches the selected filters.",
+    "typeLabel": "Type of Food",
+    "peopleLabel": "With Whom",
+    "baseLabel": "Main Ingredient",
+    "styleLabel": "Style",
+    "selectDefault": "Please select"
+  },
+  "recommend": {
+    "button": "Show Recommendation",
+    "today": "Today's Recommendation"
+  },
+  "no": {
+    "result": "No food matches the selected criteria."
+  },
+  "foodMap": {
+    "showRecommendation": "Show Food Recommendation",
+    "todayRecommendation": "Today's Recommended Menu"
+  },
+  "randomBox": {
+    "today": "Today's recommended menu:",
+    "accept": "Search with this food",
+    "retry": "Recommend again",
+    "hide": "Hide"
+  },
+  "placeList": {
+    "sortBy": "Sort by:",
+    "sortByRating": "By rating",
+    "sortByDistance": "By distance",
+    "noInfo": "No information",
+    "noMore": "No more results.",
+    "title": "Place List",
+    "noPlaces": "No places found nearby.",
+    "unknownDistance": "Distance unknown",
+    "noRating": "No rating"
+  }
+}

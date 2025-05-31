@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import {Utensils, Users, Leaf, Star} from 'lucide-react'
+import { Utensils, Users, Leaf, Star } from 'lucide-react'
 import {
   Select,
   SelectTrigger,
@@ -9,6 +9,7 @@ import {
   SelectItem,
   SelectValue,
 } from '@/components/ui/select'
+import { useTranslations } from 'next-intl'  // ✅ i18n 훅 추가
 
 type Props = {
   selectedType: string
@@ -39,10 +40,12 @@ export default function FilterSection({
                                         bases,
                                         styles,
                                       }: Props) {
+  const t = useTranslations('filters')  // ✅ 'filters' 네임스페이스 사용
+
   const filters = [
     {
       id: 'type',
-      label: '음식 종류',
+      label: t('typeLabel'), // 예: "음식 종류"
       value: selectedType,
       onChange: setSelectedType,
       options: types,
@@ -50,7 +53,7 @@ export default function FilterSection({
     },
     {
       id: 'people',
-      label: '함께하는 사람',
+      label: t('peopleLabel'), // 예: "함께하는 사람"
       value: selectedPeople,
       onChange: setSelectedPeople,
       options: peoples,
@@ -58,7 +61,7 @@ export default function FilterSection({
     },
     {
       id: 'base',
-      label: '주 재료',
+      label: t('baseLabel'), // 예: "주 재료"
       value: selectedBase,
       onChange: setSelectedBase,
       options: bases,
@@ -66,7 +69,7 @@ export default function FilterSection({
     },
     {
       id: 'style',
-      label: '스타일',
+      label: t('styleLabel'), // 예: "스타일"
       value: selectedStyle,
       onChange: setSelectedStyle,
       options: styles,
@@ -83,7 +86,7 @@ export default function FilterSection({
           </label>
           <Select value={value} onValueChange={onChange}>
             <SelectTrigger className="w-full h-9">
-              <SelectValue placeholder="선택해주세요" />
+              <SelectValue placeholder={t('selectDefault')} />
             </SelectTrigger>
             <SelectContent>
               {options.map((opt) => (
