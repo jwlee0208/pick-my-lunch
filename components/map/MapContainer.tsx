@@ -36,7 +36,7 @@ const MapContainer = ({ userLocation, mapInstance, isMapInitialized, onMapLoaded
       }
       const map = new window.google.maps.Map(mapRef.current!, {
         center: { lat: userLocation.lat, lng: userLocation.lng },
-        zoom: 14,
+        zoom: 19,
       })
       console.log('Google Maps 초기화 완료:', map)
       mapInstance.current = map
@@ -58,7 +58,7 @@ const MapContainer = ({ userLocation, mapInstance, isMapInitialized, onMapLoaded
         }
         const map = new window.kakao.maps.Map(mapRef.current!, {
           center: new window.kakao.maps.LatLng(userLocation.lat, userLocation.lng),
-          level: 3,
+          level: 4,
         })
         console.log('Kakao Maps 초기화 완료:', map)
         mapInstance.current = map
