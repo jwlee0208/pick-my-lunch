@@ -76,7 +76,7 @@ const PlaceSearch = ({
       const newResults = new Map<string, Place>()
       const markers: any[] = [] // Kakao Maps 마커 저장
 
-      if (locale === 'en') {
+      if (locale === 'en' || locale === 'ja') {
         if (!window.google?.maps?.places) {
           console.warn('Google Maps Places 서비스 로드 실패')
           return

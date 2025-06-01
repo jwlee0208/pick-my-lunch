@@ -21,17 +21,33 @@ const PlaceList = ({ places, userLocation }: Props) => {
 
   const calculateDistance = useCallback((place: Place): number | null => {
     if (!place.geometry?.location) return null
-    const { lat, lng } = place.geometry.location
+
+    let lat: number
+    let lng: number
+    const loc = place.geometry.location as any
+
+    // 함수인지 여부를 기반으로 google/kakao 구분
+    if (typeof loc.lat === 'function' && typeof loc.lng === 'function') {
+      // Google Maps: lat/lng are functions
+      lat = loc.lat()
+      lng = loc.lng()
+    } else {
+      // Kakao Maps: lat/lng are numbers
+      lat = loc.lat
+      lng = loc.lng
+    }
+
     const R = 6371 // 지구 반지름 (km)
     const toRad = (value: number) => (value * Math.PI) / 180
     const dLat = toRad(lat - userLocation.lat)
     const dLon = toRad(lng - userLocation.lng)
     const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(toRad(userLocation.lat)) * Math.cos(toRad(lat)) * Math.sin(dLon / 2) * Math.sin(dLon / 2)
+      Math.sin(dLat / 2) ** 2 +
+      Math.cos(toRad(userLocation.lat)) * Math.cos(toRad(lat)) * Math.sin(dLon / 2) ** 2
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
     return R * c
   }, [userLocation])
+
 
   const placesWithDistance = useMemo(() => {
     return places
