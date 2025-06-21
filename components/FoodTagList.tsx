@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import { Badge } from '@/components/ui/badge'
+import { pushMenuSelectEvent } from '@/lib/gtm'
 
 type Props = {
   filteredFoods: string[]
@@ -27,6 +28,7 @@ export default function FoodTagList({ filteredFoods, focusedFood, setFocusedFood
             onClick={() => {
               console.log('Badge 클릭됨:', food);
               setFocusedFood(food)
+              pushMenuSelectEvent(food, 'tag')  // 👈 GTM 이벤트 전송
             }}
             className={`cursor-pointer transition-all text-sm px-3 py-1 text-center ${
               focusedFood === food ? 'bg-indigo-600 text-white' : ''
