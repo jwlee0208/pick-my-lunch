@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { useTranslations } from 'next-intl'  // ✅ i18n 훅 추가
+import { pushMenuSelectEvent } from '@/lib/gtm'
 
 type Props = {
   selectedType: string
@@ -84,7 +85,10 @@ export default function FilterSection({
           <label htmlFor={id} className="mb-1 text-sm font-semibold flex items-center gap-2">
             {icon} {label}
           </label>
-          <Select value={value} onValueChange={onChange}>
+          <Select value={value} onValueChange={(val) => {
+            onChange(val)
+            pushMenuSelectEvent(val, 'selectBox')  // 👈 GTM 이벤트 전송
+          }}>
             <SelectTrigger className="w-full h-9">
               <SelectValue placeholder={t('selectDefault')} />
             </SelectTrigger>

@@ -7,6 +7,7 @@ import { Dice6 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import RandomFoodBox from './RandomFoodBox'
 import { weightedRandomPick, WeightedFood } from '@/utils/weightedRandomPick'
+import { pushMenuSelectEvent } from '@/lib/gtm'
 
 interface FoodRecommendationProps {
   foodNames: WeightedFood[]
@@ -36,6 +37,7 @@ const FoodRecommendation = ({ foodNames, onFoodSelected, onClearPlaces }: FoodRe
   const handleAcceptRandomFood = () => {
     setHasUserInteracted(true)
     setShowRandomFoodModal(false)
+    pushMenuSelectEvent(randomFood ?? '', 'random')  // 👈 GTM 이벤트 전송
     onFoodSelected(randomFood) // Pass randomFood directly
   }
 
