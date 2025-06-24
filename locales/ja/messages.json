@@ -27,7 +27,11 @@
     "peopleLabel": "誰と一緒に",
     "baseLabel": "主な材料",
     "styleLabel": "スタイル",
-    "selectDefault": "選択してください"
+    "selectDefault": "選択してください",
+    "showFilters": "▼ フィルターを表示",
+    "hideFilters": "▲ フィルターを非表示",
+    "showMore": "もっと見る ▼",
+    "showLess": "閉じる ▲"
   },
   "recommend": {
     "button": "Show Recommendation",

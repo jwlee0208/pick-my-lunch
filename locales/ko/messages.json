@@ -27,7 +27,11 @@
     "peopleLabel": "함께하는 사람",
     "baseLabel": "주 재료",
     "styleLabel": "스타일",
-    "selectDefault": "선택해주세요"
+    "selectDefault": "선택해주세요",
+    "showFilters": "▼ 필터 열기",
+    "hideFilters": "▲ 필터 닫기",
+    "showMore": "더보기 ▼",
+    "showLess": "접기 ▲"
   },
   "recommend": {
     "button": "추천 음식 보기",

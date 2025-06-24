@@ -47,6 +47,7 @@ export default function Home({ params: { locale } }: Props) {
   const [error, setError] = useState<string | null>(null)
   const [recommendedFood, setRecommendedFood] = useState<string | null>(null)
   const [selectedFoods, setSelectedFoods] = useState<string[]>([])
+  const [showFilters, setShowFilters] = useState(false)
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -157,11 +158,11 @@ export default function Home({ params: { locale } }: Props) {
   }
 
   if (loading) {
-    return <div className="text-center py-6">로딩 중...</div>
+    return <div className="text-center py-6">Loading...</div>
   }
 
   if (error) {
-    return <div className="text-center py-6 text-red-600">에러: {error}</div>
+    return <div className="text-center py-6 text-red-600">Error: {error}</div>
   }
 
   return (
@@ -171,6 +172,16 @@ export default function Home({ params: { locale } }: Props) {
           <Utensils size={28} className="text-indigo-600" /> {t('title')}
         </h2>
       </header>
+      <div className="flex justify-end">
+        <Button
+            variant="default"
+            onClick={() => setShowFilters((prev) => !prev)}
+            className=" bg-red-100 hover:bg-red-200 text-red-700 flex items-center gap-2 text-sm"
+        >
+          {showFilters ? t('hideFilters') : t('showFilters')}
+        </Button>
+      </div>
+    {showFilters && (
       <section className="flex flex-row flex-wrap gap-4 border border-red-500 p-4" style={{ textAlign: 'center' }}>
         <FilterSection
           selectedType={selectedType}
@@ -187,6 +198,7 @@ export default function Home({ params: { locale } }: Props) {
           styles={styles}
         />
       </section>
+    )}  
       <FoodRecommendation
         foodNames={filteredFoods}
         onFoodSelected={handleFoodSelected}
