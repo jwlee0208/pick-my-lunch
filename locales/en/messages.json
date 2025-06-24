@@ -27,7 +27,11 @@
     "peopleLabel": "With Whom",
     "baseLabel": "Main Ingredient",
     "styleLabel": "Style",
-    "selectDefault": "Please select"
+    "selectDefault": "Please select",
+    "showFilters": "▼ Show Filters",
+    "hideFilters": "▲ Hide Filters",
+    "showMore": "Show More ▼",
+    "showLess": "Show Less ▲"    
   },
   "recommend": {
     "button": "Show Recommendation",

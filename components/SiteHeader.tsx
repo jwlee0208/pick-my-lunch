@@ -1,8 +1,8 @@
 'use client';
 
 import { siteConfig } from "@/config/site"
-import { MainNav } from "@/components/main-nav"
-import { ThemeToggle } from './theme-toggle';
+import { MainNav } from "@/components/MainNav"
+import { ThemeToggle } from './ThemeToggle';
 import { LanguageSwitcher } from './LanguageSwitcher';
 
 export function SiteHeader() {

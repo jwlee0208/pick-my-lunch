@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { pushMenuSelectEvent } from '@/lib/gtm'
+import { useTranslations } from 'next-intl'
 
 type Props = {
   filteredFoods: string[]
@@ -16,6 +17,7 @@ export default function FoodTagList({ filteredFoods, focusedFood, setFocusedFood
   const [showAll, setShowAll] = useState(false)
 
   const displayFoods = showAll ? filteredFoods : filteredFoods.slice(0, MAX_TAGS)
+  const t = useTranslations('filters') // 또는 해당 namespace
 
   return (
     <div className="flex flex-col items-center gap-4 py-2 w-full">
@@ -45,7 +47,7 @@ export default function FoodTagList({ filteredFoods, focusedFood, setFocusedFood
             onClick={() => setShowAll(!showAll)}
             className="text-xs text-blue-600 underline text-center"
           >
-            {showAll ? '접기 ▲' : '더보기 ▼'}
+            {showAll ?  t('showLess') : t('showMore')}
           </button>
         </div>
       )}

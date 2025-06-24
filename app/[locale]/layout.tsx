@@ -3,10 +3,10 @@ import '../../styles/globals.css';
 import { ReactNode } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
-import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeProvider } from '@/components/ThemeProvider';
 import { SiteHeader } from '@/components/SiteHeader';
 import { getMessages } from 'next-intl/server';
-import GATracker from "@/components/GATracker";
+import GATracker from "@/components/google/GATracker";
 import Script from "next/script";
 
 export default async function LocaleLayout({
