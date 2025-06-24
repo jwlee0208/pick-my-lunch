@@ -76,6 +76,20 @@ const PlaceSearch = ({
       const newResults = new Map<string, Place>()
       const markers: any[] = [] // Kakao Maps 마커 저장
 
+      const isKakaoUsable =
+        locale === 'ko' &&
+        typeof window !== 'undefined' &&
+        window.kakao?.maps?.services &&
+        typeof window.kakao.maps.services.Places === 'function'
+      console.log(`isKakaoUsable : ${isKakaoUsable}`)
+      if (isKakaoUsable) {
+        // ✅ Kakao 지도 로직 실행
+        console.log('카카오 지도 실행')
+      } else {
+        // ✅ Google 지도 로직 fallback 실행
+        console.log('구글 지도 실행')
+      }
+
       if (locale === 'en' || locale === 'ja') {
         if (!window.google?.maps?.places) {
           console.warn('Google Maps Places 서비스 로드 실패')
