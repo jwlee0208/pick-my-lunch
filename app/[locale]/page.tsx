@@ -203,7 +203,9 @@ export default function Home({ params: { locale } }: Props) {
         foodNames={filteredFoods}
         onFoodSelected={handleFoodSelected}
         onClearPlaces={handleClearPlaces}
+        onClearFocusedFood={() => setFocusedFood(null)} // ✅ 추가
       />
+
       {filteredFoods.length > 0 && (
         <section className="w-full">
           <FoodTagList

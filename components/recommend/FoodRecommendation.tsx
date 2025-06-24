@@ -1,3 +1,4 @@
+// ✅ 수정된 FoodRecommendation.tsx
 'use client'
 
 import React, { useState, useEffect } from 'react'
@@ -13,9 +14,15 @@ interface FoodRecommendationProps {
   foodNames: WeightedFood[]
   onFoodSelected: (food: string | null) => void
   onClearPlaces: () => void
+  onClearFocusedFood: () => void // ✅ focusedFood 초기화 prop 추가
 }
 
-const FoodRecommendation = ({ foodNames, onFoodSelected, onClearPlaces }: FoodRecommendationProps) => {
+const FoodRecommendation = ({
+  foodNames,
+  onFoodSelected,
+  onClearPlaces,
+  onClearFocusedFood,
+}: FoodRecommendationProps) => {
   const t = useTranslations('foodMap')
   const [randomFood, setRandomFood] = useState<string | null>(null)
   const [showRandomFoodModal, setShowRandomFoodModal] = useState<boolean>(true)
@@ -30,6 +37,7 @@ const FoodRecommendation = ({ foodNames, onFoodSelected, onClearPlaces }: FoodRe
 
   const handleRePick = () => {
     const otherFoods = foodNames.filter((f) => f.name !== randomFood)
+    if (otherFoods.length === 0) return // ✅ 에러 방지
     const random = weightedRandomPick(otherFoods)
     setRandomFood(random)
   }
@@ -37,11 +45,12 @@ const FoodRecommendation = ({ foodNames, onFoodSelected, onClearPlaces }: FoodRe
   const handleAcceptRandomFood = () => {
     setHasUserInteracted(true)
     setShowRandomFoodModal(false)
-    pushMenuSelectEvent(randomFood ?? '', 'random')  // 👈 GTM 이벤트 전송
-    onFoodSelected(randomFood) // Pass randomFood directly
+    pushMenuSelectEvent(randomFood ?? '', 'random')
+    onFoodSelected(randomFood)
   }
 
   const handleShowRecommendation = () => {
+    onClearFocusedFood() // ✅ focusedFood 초기화
     onClearPlaces()
     if (foodNames.length > 0) {
       const random = weightedRandomPick(foodNames)
@@ -55,7 +64,7 @@ const FoodRecommendation = ({ foodNames, onFoodSelected, onClearPlaces }: FoodRe
     setRandomFood(null)
     setHasUserInteracted(true)
     setShowRandomFoodModal(false)
-    onFoodSelected(null) // Pass null to reset to all foods
+    onFoodSelected(null)
     if (foodNames.length > 0) {
       const random = weightedRandomPick(foodNames)
       setRandomFood(random)
@@ -77,7 +86,10 @@ const FoodRecommendation = ({ foodNames, onFoodSelected, onClearPlaces }: FoodRe
 
       {showRandomFoodModal && (
         <Dialog open onOpenChange={setShowRandomFoodModal}>
-          <DialogContent className="rounded-lg bg-white dark:bg-gray-900 p-6 shadow-xl w-full max-w-md mx-auto" aria-describedby="recommendation-description">
+          <DialogContent
+            className="rounded-lg bg-white dark:bg-gray-900 p-6 shadow-xl w-full max-w-md mx-auto"
+            aria-describedby="recommendation-description"
+          >
             <div>
               <DialogTitle className="mb-2">{t('todayRecommendation')}</DialogTitle>
               <RandomFoodBox
