@@ -18,7 +18,7 @@ export const Icons = {
       <Image src="/favicon/favicon-32x32.png" alt="Logo" width={24} height={24} />
     </div>
   ),
-  // 
+  // temp
   gitHub: (props: LucideProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path
