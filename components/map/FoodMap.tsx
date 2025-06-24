@@ -1,11 +1,11 @@
 'use client'
 
 import React, { useRef, useState, useCallback } from 'react'
-import MapContainer from './map/MapContainer'
-import PlaceSearch from './place/PlaceSearch'
-import MarkerManager from './map/MarkerManager'
-import FoodRecommendation from './FoodRecommendation'
-import PlaceList from './place/PlaceList'
+import MapContainer from './MapContainer'
+import PlaceSearch from '../place/PlaceSearch'
+import MarkerManager from './MarkerManager'
+import FoodRecommendation from '../recommend/FoodRecommendation'
+import PlaceList from '../place/PlaceList'
 import { WeightedFood } from '@/utils/weightedRandomPick'
 import { Place } from '@/types/place'
 

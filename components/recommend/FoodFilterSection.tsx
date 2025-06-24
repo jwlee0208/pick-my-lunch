@@ -27,7 +27,7 @@ type Props = {
   styles: string[]
 }
 
-export default function FilterSection({
+export default function FoodFilterSection({
                                         selectedType,
                                         setSelectedType,
                                         selectedPeople,

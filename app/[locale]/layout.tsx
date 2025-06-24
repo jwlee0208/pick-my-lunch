@@ -3,7 +3,7 @@ import '../../styles/globals.css';
 import { ReactNode } from 'react';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
-import { ThemeProvider } from '@/components/ThemeProvider';
+import { ThemeProvider } from '@/components/tailwind/ThemeProvider';
 import { SiteHeader } from '@/components/SiteHeader';
 import { getMessages } from 'next-intl/server';
 import GATracker from "@/components/google/GATracker";
