@@ -8,7 +8,7 @@ import {
 import Image from "next/image";
 
 export type Icon = LucideIcon
-
+// temp text
 export const Icons = {
   sun: SunMedium,
   moon: Moon,
