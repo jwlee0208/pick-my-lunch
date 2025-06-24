@@ -2,7 +2,7 @@
 
 import { siteConfig } from "@/config/site"
 import { MainNav } from "@/components/MainNav"
-import { ThemeToggle } from './ThemeToggle';
+import { ThemeToggle } from './tailwind/ThemeToggle';
 import { LanguageSwitcher } from './LanguageSwitcher';
 
 export function SiteHeader() {

@@ -3,10 +3,10 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import { Utensils, RefreshCcw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import FilterSection from '@/components/FilterSection'
-import FoodMap from '@/components/FoodMap'
-import FoodTagList from '@/components/FoodTagList'
-import FoodRecommendation from '@/components/FoodRecommendation'
+import FilterSection from '@/components/recommend/FoodFilterSection'
+import FoodMap from '@/components/map/FoodMap'
+import FoodTagList from '@/components/recommend/FoodTagList'
+import FoodRecommendation from '@/components/recommend/FoodRecommendation'
 import { WeightedFood } from '@/utils/weightedRandomPick'
 import { useTranslations } from 'next-intl'
 
@@ -166,39 +166,39 @@ export default function Home({ params: { locale } }: Props) {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
-      <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <h2 className="text-3xl font-bold text-gray-900 flex items-center gap-2" style={{ textAlign: 'center' }}>
-          <Utensils size={28} className="text-indigo-600" /> {t('title')}
-        </h2>
-      </header>
-      <div className="flex justify-end">
-        <Button
+      <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
+        <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <h2 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
+            <Utensils size={28} className="text-indigo-600" /> {t('title')}
+          </h2>
+          <Button
             variant="default"
             onClick={() => setShowFilters((prev) => !prev)}
-            className=" bg-red-100 hover:bg-red-200 text-red-700 flex items-center gap-2 text-sm"
-        >
-          {showFilters ? t('hideFilters') : t('showFilters')}
-        </Button>
-      </div>
-    {showFilters && (
-      <section className="flex flex-row flex-wrap gap-4 border border-red-500 p-4" style={{ textAlign: 'center' }}>
-        <FilterSection
-          selectedType={selectedType}
-          setSelectedType={setSelectedType}
-          selectedPeople={selectedPeople}
-          setSelectedPeople={setSelectedPeople}
-          selectedBase={selectedBase}
-          setSelectedBase={setSelectedBase}
-          selectedStyle={selectedStyle}
-          setSelectedStyle={setSelectedStyle}
-          types={types}
-          peoples={peoples}
-          bases={bases}
-          styles={styles}
-        />
-      </section>
-    )}  
+            className="bg-red-100 hover:bg-red-200 text-red-700 flex items-center gap-2 text-sm"
+          >
+            {showFilters ? t('hideFilters') : t('showFilters')}
+          </Button>
+        </header>
+
+        {showFilters && (
+          <section className="flex flex-row flex-wrap gap-4 border border-red-500 p-4 text-center">
+            <FilterSection
+              selectedType={selectedType}
+              setSelectedType={setSelectedType}
+              selectedPeople={selectedPeople}
+              setSelectedPeople={setSelectedPeople}
+              selectedBase={selectedBase}
+              setSelectedBase={setSelectedBase}
+              selectedStyle={selectedStyle}
+              setSelectedStyle={setSelectedStyle}
+              types={types}
+              peoples={peoples}
+              bases={bases}
+              styles={styles}
+            />
+          </section>
+        )}
+  
       <FoodRecommendation
         foodNames={filteredFoods}
         onFoodSelected={handleFoodSelected}
@@ -232,5 +232,5 @@ export default function Home({ params: { locale } }: Props) {
         <p className="mt-6 text-center text-red-600 font-semibold">{t('noResult')}</p>
       )}
     </div>
-  )
+  )  
 }
