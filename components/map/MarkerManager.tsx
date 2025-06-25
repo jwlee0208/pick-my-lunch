@@ -27,7 +27,7 @@ const MarkerManager = ({ places, mapInstance, markersRef }: MarkerManagerProps) 
       const location = place.geometry.location
 
       // Google Maps 처리
-      if ((locale === 'en'|| locale === 'ja') && window.google?.maps) {
+      if ((locale === 'en'|| locale === 'ja' || locale === 'zh-hant') && window.google?.maps) {
         let lat: number
         let lng: number
 

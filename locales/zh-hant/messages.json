@@ -1,0 +1,64 @@
+{
+  "filters": {
+    "title": "午餐菜單推薦",
+    "typeDefault": "請選擇",
+    "korean": "韓式料理",
+    "japanese": "日式料理",
+    "chinese": "中式料理",
+    "western": "西式料理",
+    "southeast": "東南亞料理",
+    "peopleDefault": "請選擇",
+    "alone": "獨自一人",
+    "friend": "朋友",
+    "coworker": "職場同事",
+    "lover": "情人",
+    "family": "家人",
+    "baseDefault": "請選擇",
+    "noodle": "麵",
+    "rice": "飯",
+    "bread": "麵包",
+    "etc": "其他",
+    "styleDefault": "請選擇",
+    "simple": "簡單",
+    "full": "正式",
+    "reset": "重置",
+    "noResult": "沒有符合選擇條件的食物。",
+    "typeLabel": "食物種類",
+    "peopleLabel": "一起用餐的人",
+    "baseLabel": "主要食材",
+    "styleLabel": "風格",
+    "selectDefault": "請選擇",
+    "showFilters": "▼ 展開篩選",
+    "hideFilters": "▲ 收起篩選",
+    "showMore": "查看更多 ▼",
+    "showLess": "收起 ▲"
+  },
+  "recommend": {
+    "button": "查看推薦食物",
+    "today": "今日推薦菜單"
+  },
+  "no": {
+    "result": "沒有符合選擇條件的食物。"
+  },
+  "foodMap": {
+    "showRecommendation": "查看推薦食物",
+    "todayRecommendation": "今日推薦菜單"
+  },
+  "randomBox": {
+    "today": "今日推薦菜單：",
+    "accept": "以此食物搜尋",
+    "retry": "重新推薦",
+    "hide": "隱藏"
+  },
+  "placeList": {
+    "sortBy": "排序依據：",
+    "sortByRating": "按評分排序",
+    "sortByDistance": "按距離排序",
+    "noInfo": "無資訊",
+    "noMore": "沒有更多結果。",
+    "title": "地點列表",
+    "noPlaces": "附近沒有地點。",
+    "unknownDistance": "無距離資訊",
+    "noRating": "無評分"
+  }
+}

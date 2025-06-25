@@ -90,7 +90,7 @@ const PlaceSearch = ({
         console.log('구글 지도 실행')
       }
 
-      if (locale === 'en' || locale === 'ja') {
+      if (locale === 'en' || locale === 'ja' || locale === 'zh-hant') {
         if (!window.google?.maps?.places) {
           console.warn('Google Maps Places 서비스 로드 실패')
           return
