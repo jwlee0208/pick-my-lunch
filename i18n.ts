@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { getRequestConfig } from 'next-intl/server'
 
 // Can be imported from a shared config
-export const locales = ['en', 'ko', 'ja']
+export const locales = ['en', 'ko', 'ja', 'zh-hant']
 export type Locale = (typeof locales)[number]
 export const defaultLocale = 'ko'
 export const localePrefix = 'always' // Default

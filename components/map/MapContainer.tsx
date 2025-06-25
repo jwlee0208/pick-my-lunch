@@ -29,7 +29,7 @@ const MapContainer = ({ userLocation, mapInstance, isMapInitialized, onMapLoaded
 
   const initializeMap = () => {
     console.log('initializeMap 시작:', locale)
-    if (locale === 'en' || locale === 'ja') {
+    if (locale === 'en' || locale === 'ja' || locale === 'zh-hant') {
       if (!window.google || !window.google.maps) {
         console.error('Google Maps SDK 로드 실패')
         return

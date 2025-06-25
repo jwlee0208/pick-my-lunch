@@ -5,9 +5,10 @@ import { useRouter, usePathname } from 'next/navigation'
 
 const languages = [
   { code: 'ko', label: '🇰🇷 한국어' },
-  { code: 'en', label: '🇺🇸 English' },
-  { code: 'ja', label: '🇯🇵 日本語' }
-]
+  { code: 'en', label: '🇺🇸🇬🇧 English' },
+  { code: 'ja', label: '🇯🇵 日本語' },
+  { code: 'zh-hant', label: '🇹🇼🇭🇰🇲🇴 繁體中文' },
+];
 
 export function LanguageSwitcher() {
   const router = useRouter()
