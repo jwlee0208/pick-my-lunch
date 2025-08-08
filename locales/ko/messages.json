@@ -60,5 +60,8 @@
     "noPlaces": "근처에 장소가 없습니다.",
     "unknownDistance": "거리 정보 없음",
     "noRating": "평점 없음"
+  },
+  "common": {
+    "feedback": "의견 보내기 💬"
   }
 }

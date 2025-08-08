@@ -60,5 +60,8 @@
     "noPlaces": "近くに場所が見つかりません。",
     "unknownDistance": "距離不明",
     "noRating": "評価なし"
+  },
+  "common" : {
+    "feedback": "フィードバックを送る 💬"
   }
 }

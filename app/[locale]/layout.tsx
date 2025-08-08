@@ -8,6 +8,7 @@ import { SiteHeader } from '@/components/SiteHeader';
 import { getMessages } from 'next-intl/server';
 import GATracker from "@/components/google/GATracker";
 import Script from "next/script";
+import FeedbackButton from '@/components/FeedbackButton';
 
 export default async function LocaleLayout({
                                              children,
@@ -40,23 +41,6 @@ export default async function LocaleLayout({
           })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID}');
         `}
       </Script>
-      {/* Google Analytics 4 */}
-{/*
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA4_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script id="ga-init" strategy="afterInteractive">
-        {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_GA4_ID}', {
-                page_path: window.location.pathname,
-              });
-        `}
-      </Script>
-*/}
     </head>
     <body>
 
@@ -75,6 +59,7 @@ export default async function LocaleLayout({
         <GATracker/>
         <SiteHeader />
         {children}
+        <FeedbackButton />
       </ThemeProvider>
     </NextIntlClientProvider>
     </body>

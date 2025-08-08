@@ -31,7 +31,7 @@
     "showFilters": "▼ Show Filters",
     "hideFilters": "▲ Hide Filters",
     "showMore": "Show More ▼",
-    "showLess": "Show Less ▲"    
+    "showLess": "Show Less ▲"
   },
   "recommend": {
     "button": "Show Recommendation",
@@ -60,5 +60,8 @@
     "noPlaces": "No places found nearby.",
     "unknownDistance": "Distance unknown",
     "noRating": "No rating"
-  }
+  },
+    "common": {
+      "feedback": "Send Feedback 💬"
+    }
 }

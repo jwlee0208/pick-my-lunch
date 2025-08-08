@@ -60,5 +60,8 @@
     "noPlaces": "附近沒有地點。",
     "unknownDistance": "無距離資訊",
     "noRating": "無評分"
+  },
+    "common": {
+    "feedback": "Send Feedback 💬"
   }
 }
