@@ -3,38 +3,13 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import { useLocale } from 'next-intl'
 import { Place } from '@/types/place'
-
-// 커스텀 타입 정의
-interface LatLng {
-  lat: () => number
-  lng: () => number
-}
-
-interface LatLngLiteral {
-  lat: number
-  lng: number
-}
-
-interface PlaceResult {
-  place_id?: string
-  name?: string
-  geometry?: { location?: LatLng | LatLngLiteral }
-  formatted_address?: string
-  business_status?: string
-  rating?: number
-  vicinity?: string
-}
-
-interface KakaoPlace {
-  id: string
-  place_name: string
-  address_name: string
-  road_address_name?: string
-  x: string
-  y: string
-  distance?: string
-  place_url?: string // 상세 페이지 URL
-}
+import {
+  extractCoordinates,
+  calculateDistance,
+  convertGooglePlace,
+  convertKakaoPlace,
+  filterPlacesByRadius
+} from '@/utils/typeGuards'
 
 interface PlaceSearchProps {
   recommendedFood: string | null
@@ -45,23 +20,14 @@ interface PlaceSearchProps {
   onPlacesUpdated: (places: Place[]) => void
 }
 
-// 타입 가드 함수
-const isLatLng = (location: unknown): location is LatLng => {
-  return !!location && typeof (location as LatLng).lat === 'function' && typeof (location as LatLng).lng === 'function'
-}
-
-const isLatLngLiteral = (location: unknown): location is LatLngLiteral => {
-  return !!location && typeof (location as LatLngLiteral).lat === 'number' && typeof (location as LatLngLiteral).lng === 'number'
-}
-
 const PlaceSearch = ({
-                       recommendedFood,
-                       selectedFoods,
-                       userLocation,
-                       mapInstance,
-                       isMapInitialized,
-                       onPlacesUpdated,
-                     }: PlaceSearchProps) => {
+  recommendedFood,
+  selectedFoods,
+  userLocation,
+  mapInstance,
+  isMapInitialized,
+  onPlacesUpdated,
+}: PlaceSearchProps) => {
   const locale = useLocale()
   const [processedFoods, setProcessedFoods] = useState<Set<string>>(new Set())
   const [allPlaces, setAllPlaces] = useState<Map<string, Place>>(new Map())
@@ -74,21 +40,6 @@ const PlaceSearch = ({
       }
 
       const newResults = new Map<string, Place>()
-      const markers: any[] = [] // Kakao Maps 마커 저장
-
-      const isKakaoUsable =
-        locale === 'ko' &&
-        typeof window !== 'undefined' &&
-        window.kakao?.maps?.services &&
-        typeof window.kakao.maps.services.Places === 'function'
-      console.log(`isKakaoUsable : ${isKakaoUsable}`)
-      if (isKakaoUsable) {
-        // ✅ Kakao 지도 로직 실행
-        console.log('카카오 지도 실행')
-      } else {
-        // ✅ Google 지도 로직 fallback 실행
-        console.log('구글 지도 실행')
-      }
 
       if (locale === 'en' || locale === 'ja' || locale === 'zh-hant') {
         if (!window.google?.maps?.places) {
@@ -103,52 +54,32 @@ const PlaceSearch = ({
             new Promise<void>((resolve) => {
               const request: google.maps.places.TextSearchRequest = {
                 location: userLocation,
-                radius: 1500,
+                radius: 1500, // 1.5km
                 query: food,
               }
 
-              service.textSearch(request, (results: PlaceResult[] | null, status) => {
+              service.textSearch(request, (results: any[] | null, status) => {
                 if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
-                  results.forEach((place) => {
+                  const validPlaces: Place[] = []
+
+                  results.forEach((googlePlace) => {
                     const isActive =
-                      place.business_status !== 'CLOSED_PERMANENTLY' &&
-                      place.business_status !== 'CLOSED_TEMPORARILY'
+                      googlePlace.business_status !== 'CLOSED_PERMANENTLY' &&
+                      googlePlace.business_status !== 'CLOSED_TEMPORARILY'
 
-                    if (!place.place_id || !place.geometry?.location || !isActive) return
+                    if (!googlePlace.place_id || !googlePlace.geometry?.location || !isActive) return
 
-                    let lat: number, lng: number
-                    const location = place.geometry.location
-
-                    if (isLatLng(location)) {
-                      lat = location.lat()
-                      lng = location.lng()
-                    } else if (isLatLngLiteral(location)) {
-                      lat = location.lat
-                      lng = location.lng
-                    } else {
-                      console.warn(`유효하지 않은 location 형식: ${place.name}`, location)
-                      return
+                    // 유틸리티 함수로 변환
+                    const place = convertGooglePlace(googlePlace, userLocation)
+                    if (place) {
+                      validPlaces.push(place)
                     }
+                  })
 
-                    const placeData: Place = {
-                      place_id: place.place_id,
-                      name: place.name || '',
-                      formatted_address: place.formatted_address || '',
-                      geometry: { location: { lat, lng } },
-                      business_status: place.business_status,
-                      rating: place.rating,
-                      vicinity: place.vicinity,
-                      source: 'google',
-                    }
-                    newResults.set(place.place_id, placeData)
-
-                    // Google Maps 마커 추가
-                    const marker = new window.google.maps.Marker({
-                      position: { lat, lng },
-                      map: mapInstance.current,
-                      title: place.name,
-                    })
-                    markers.push(marker)
+                  // 반경 필터링 적용
+                  const filteredPlaces = filterPlacesByRadius(validPlaces, userLocation, 1.5)
+                  filteredPlaces.forEach((place) => {
+                    newResults.set(place.place_id, place)
                   })
                 } else {
                   console.warn(`Google Places 검색 실패: ${status}, 키워드: ${food}`)
@@ -171,37 +102,20 @@ const PlaceSearch = ({
           new Promise((resolve) => {
             placesService.keywordSearch(
               keyword,
-              (results: KakaoPlace[], status: string) => {
+              (results: KakaoPlaceData[], status: string) => {
                 if (status === window.kakao.maps.services.Status.OK && results) {
                   const places: Place[] = []
-                  for (const item of results) {
-                    const lat = parseFloat(item.y)
-                    const lng = parseFloat(item.x)
-                    if (isNaN(lat) || isNaN(lng)) {
-                      console.warn(`유효하지 않은 좌표: id=${item.id}, x=${item.x}, y=${item.y}`)
-                      continue
+                  for (const kakaoPlace of results) {
+                    // 유틸리티 함수로 변환
+                    const place = convertKakaoPlace(kakaoPlace, userLocation)
+                    if (place) {
+                      places.push(place)
                     }
-                    const placeData: Place = {
-                      place_id: item.id,
-                      name: item.place_name,
-                      formatted_address: item.road_address_name || item.address_name,
-                      geometry: { location: { lat, lng } },
-                      business_status: 'OPERATIONAL',
-                      vicinity: item.address_name,
-                      distance: item.distance ? parseFloat(item.distance) / 1000 : null,
-                      source: 'kakao',
-                      place_url: item.place_url,
-                    }
-                    places.push(placeData)
-
-                    const marker = new window.kakao.maps.Marker({
-                      map: mapInstance.current,
-                      position: new window.kakao.maps.LatLng(lat, lng),
-                      title: item.place_name,
-                    })
-                    markers.push(marker)
                   }
-                  resolve(places)
+
+                  // 반경 필터링 적용
+                  const filteredPlaces = filterPlacesByRadius(places, userLocation, 1.5)
+                  resolve(filteredPlaces)
                 } else {
                   console.warn(`Kakao 검색 실패: ${keyword}, 상태: ${status}`)
                   resolve([])
@@ -226,12 +140,20 @@ const PlaceSearch = ({
         await Promise.all(fetchPromises)
       }
 
+      // 처리된 음식 추가
+      setProcessedFoods((prev) => {
+        const updated = new Set(prev)
+        foodsToSearch.forEach((food) => updated.add(food))
+        return updated
+      })
+
       setAllPlaces((prev) => {
         const updated = new Map(prev)
         newResults.forEach((place, place_id) => updated.set(place_id, place))
         return updated
       })
 
+      // 마커 생성은 MarkerManager에서만 하도록 제거
       onPlacesUpdated(Array.from(newResults.values()))
     },
     [locale, userLocation, mapInstance, isMapInitialized, onPlacesUpdated]
